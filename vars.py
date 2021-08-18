@@ -1,5 +1,3 @@
-
-
-DB_USER = "admin"
-DB_PASS = "admin"
-DB_NAME = "users"
+DB_USER = "ARKhaled"
+DB_PASS = "Bodyflash149"
+DB_NAME = "carinfra"
