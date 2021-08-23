@@ -1,4 +1,4 @@
-from .routes import app
+from routes import app
 from flask import Response
 from User import registerValidate
 
