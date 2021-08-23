@@ -362,6 +362,6 @@ class DataBase:
 
     def __del__(self):
         self.db.close()
-        
+
         
         

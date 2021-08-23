@@ -48,12 +48,13 @@ from Models.User import checkCode
 
 from Models.User import changePwEz
 
-from Main import db
+from app import db
 
 from flask_bcrypt import Bcrypt
 
 
-from flask_mail import Mail, Message
+#from flask_mail import Mail
+#, Message
 
 import random
 import string
@@ -68,7 +69,7 @@ from functools import wraps
 app.config['SECRET_KEY'] = os.urandom(24)
 
 
-from Main import db
+from app import db
 
 bcrypt = Bcrypt(app)
 
@@ -111,6 +112,10 @@ def token_required(f):
 
 
 
+@app.route('/')
+def welcome():
+    return "Welcome to the app!"
+
 @app.route('/users/sendemail', methods=['POST'])
 def sendEmail():
     
@@ -121,11 +126,11 @@ def sendEmail():
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
     
-    mail = Mail(app)
+  #  mail = Mail(app)
 
-    msg = Message('Hello', sender = 'BikeroonsApp@gmail.com', recipients = ['lydiay711@gmail.com'])
-    msg.body = "This is the email body"
-    mail.send(msg)
+  #  msg = Message('Hello', sender = 'BikeroonsApp@gmail.com', recipients = ['lydiay711@gmail.com'])
+   # msg.body = "This is the email body"
+   # mail.send(msg)
     return "Sent"
 
 
@@ -596,11 +601,11 @@ def forgotPW():
         app.config['MAIL_USE_TLS'] = False
         app.config['MAIL_USE_SSL'] = True
         
-        mail = Mail(app)
+     #  mail = Mail(app)
     
-        msg = Message('Code to change password', sender = 'BikeroonsApp@gmail.com', recipients = [request.form['email']])
-        msg.body = "You have requested to change your password. To proceed with the process, enter the following code in the space provided in Bikeroons: "+code
-        mail.send(msg)
+      #  msg = Message('Code to change password', sender = 'BikeroonsApp@gmail.com', recipients = [request.form['email']])
+     #   msg.body = "You have requested to change your password. To proceed with the process, enter the following code in the space provided in Bikeroons: "+code
+      #  mail.send(msg)
         
         return Response(
             response=json.dumps({

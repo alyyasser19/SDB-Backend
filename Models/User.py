@@ -1,6 +1,6 @@
 import re
 import json
-from Main import db
+from app import db
 from werkzeug.datastructures import ImmutableMultiDict
 
 from flask_bcrypt import Bcrypt
