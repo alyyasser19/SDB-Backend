@@ -1,54 +1,46 @@
-from flask.wrappers import Request
 from .routes import app
-from flask import request,Response
-import json
-from Models.User import registerValidate
+from flask import Response
+from User import registerValidate
 
-from cryptography.fernet import Fernet
+from User import signinValidate
+from User import emailCheck
+from User import getNumbers
 
-from Models.User import signinValidate
-from Models.User import emailCheck
-from Models.User import getNumbers
+from User import editNum
+from User import removeNum
 
-from Models.User import editNum
-from Models.User import removeNum
+from User import createRideDB
 
-from Models.User import createRideDB
+from User import getUserBike
+from User import getCommand
 
-from Models.User import getUserBike
-from Models.User import getCommand
-
-from Models.User import removeCode
+from User import removeCode
 
 
-from Models.User import remBikeID
+from User import remBikeID
 
-from Models.User import bikeID
-
-
-from Models.User import getRides
-
-from Models.User import validEmail
-
-from Models.User import forgotPassword
+from User import bikeID
 
 
-from Models.User import email_func
-from Models.User import addNum
+from User import getRides
 
-from Models.User import changePassword
+from User import validEmail
 
-from Models.User import removeRideDB
+from User import forgotPassword
 
-from Models.User import tempBikeID
+from User import addNum
 
-from Models.User import getUserTempBike
+from User import changePassword
 
-from Models.User import checkCode
+from User import removeRideDB
 
-from Models.User import changePwEz
+from User import tempBikeID
 
-from app import db
+from User import getUserTempBike
+
+from User import checkCode
+
+from User import changePwEz
 
 from flask_bcrypt import Bcrypt
 
@@ -61,7 +53,7 @@ import string
 
 import json
 
-from flask import Flask, jsonify, request, make_response
+from flask import jsonify, request
 import jwt
 import datetime
 import os
