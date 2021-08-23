@@ -1,3 +1,5 @@
+import flask
+
 from routes import app
 from flask import request, Response
 import json
@@ -61,7 +63,8 @@ def getBike():
     }
     x = db.getbike(info)
     output = dict()
-    if x is not None:
+    headers = flask.request.headers
+    if x is not None and headers["sender"] == "main":
         output['data'] = x
         output['message'] = 'Success'
         output['error'] = False
