@@ -193,6 +193,7 @@ def createUser():
 
 
 @app.route('/users/getuserbike/<email>', methods=['GET'])
+@token_required
 def getUserbike(email):
     validated = getUserBike(email)
     
