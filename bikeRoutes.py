@@ -1,9 +1,14 @@
-from .routes import app
+from routes import app
 from flask import request, Response
 import json
-import Main
-from Main import db
-from Models.Bike import validate
+from DataBase import DataBase
+from Bike import validate
+db = DataBase()
+
+#########################################################################################################################
+@app.route('/')
+def Welcome():
+    return "Welcome to the app!"
 ##########################################################################################################################
 @app.route('/bikes/Addbike', methods=['POST'])
 def AddBike():

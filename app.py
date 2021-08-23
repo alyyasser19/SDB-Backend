@@ -1,4 +1,4 @@
-from Api import routes
+import routes
 from DataBase import DataBase
 
 
@@ -6,4 +6,4 @@ app = routes.app
 db = DataBase()
 
 if __name__ == '__main__':
-    app.run(port=8080)
+    app.run()
