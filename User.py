@@ -1,6 +1,6 @@
 import re
 import json
-from DataBase import DataBase
+from app import db
 from werkzeug.datastructures import ImmutableMultiDict
 
 from flask_bcrypt import Bcrypt
@@ -29,7 +29,7 @@ def length_funcln(string):
 def email_func(email):
     print("in the email func")
     
-    value = DataBase.emailExists(email)
+    value = db.emailExists(email)
     
     if(value["error"]):
         return {"error": True, "message":value["message"]}
@@ -95,7 +95,7 @@ def signinValidate2(json_input):
         if(key not in json_input):
             return {"error": True, "message": f"{key} not found"}
         else:
-            value = DataBase.loginDB(json_input)
+            value = db.loginDB(json_input)
 
             if(value["error"]):
                 return {"error": True, "message": value["message"]}
@@ -109,7 +109,7 @@ def signinValidate(json_input):
         if(key not in json_input and key != "rides"):
             return {"error": True, "message": f"{key} not found"}
         else:
-                value = DataBase.loginDB(json_input)
+                value = db.loginDB(json_input)
                 
                 if value["error"]:
                          return  {"error":True, "message":value["message"]}
@@ -143,14 +143,14 @@ def changePassword(json_input):
                 if(requirement(value)["error"]):
                     return  requirement(value)
                 else:                    
-                    value = DataBase.loginDB(json_input)
+                    value = db.loginDB(json_input)
                     if value["error"]:
                          return  {"error":False, "message":value["message"]}
                     else:
                         if bcrypt.check_password_hash(value["pass"], json_input["password"]):
                             #password is correct
                             newpw = {"newpw":bcrypt.generate_password_hash(json_input["newpassword"])}
-                            changeIT = DataBase.changePW(json_input, newpw)
+                            changeIT = db.changePW(json_input, newpw)
                             
                             if changeIT["error"]:    
                                 return  {"error":True, "message": changeIT["message"]}  
@@ -171,14 +171,14 @@ def emailCheck(json_input):
         if(key not in json_input):
             return {"error": True, "message": "E-mail not found"}
         else:
-            value = DataBase.checkEmail(json_input)
+            value = db.checkEmail(json_input)
             if(value["error"]):
                 return {"error": True, "message": "E-mail is taken!"}
             return {"error": False, "message": ""}
                 
 
 def getNumbers(json_input):
-    value = DataBase.getnum(json_input)
+    value = db.getnum(json_input)
     if(value["error"]):
         return {"error": True, "message": value["message"]}
     #return {value["lool"]}
@@ -217,7 +217,7 @@ def addNum(json_input):
             if(requirement(value)["error"]):
                 return  requirement(value)
             
-        value = DataBase.addRaqam(json_input)
+        value = db.addRaqam(json_input)
         
         if(value["error"]):
             return {"error": True, "message": value["message"]}
@@ -256,7 +256,7 @@ def editNum(json_input):
                 if(requirement(value)["error"]):
                     return  requirement(value)
                 else:
-                    value = DataBase.editNumber(json_input)
+                    value = db.editNumber(json_input)
                     if(value["error"]):
                         return {"error": True, "message": value["message"]}
                     return {"error":False, "message":""}
@@ -273,7 +273,7 @@ def removeNum(json_input):
         if(key not in json_input):
             return {"error": True, "message": f"{key} not found"}
         else:
-            value = DataBase.removeNumber(json_input)
+            value = db.removeNumber(json_input)
             if(value["error"]):
                 return {"error": True, "message": value["message"]}
             return {"error":False, "message":""}
@@ -297,7 +297,7 @@ def createRideDB(json_input):
         if(key not in json_input):
             return {"error": True, "message": f"{key} not found"}
         else:
-            value = DataBase.createRideNOW(json_input)
+            value = db.createRideNOW(json_input)
             if(value["error"]):
                 return {"error": True, "message": value["message"]}
             return {"error":False, "message":""}
@@ -305,7 +305,7 @@ def createRideDB(json_input):
 
 
 def getRides(email):
-    value = DataBase.getRidesDB(email)
+    value = db.getRidesDB(email)
     if(value["error"]):
         return {"error": True, "message": value["message"]}
     #return {value["lool"]}
@@ -323,7 +323,7 @@ def bikeID(json_string):
         if(key not in json_string):
             return {"error": True, "message": f"{key} not found"}
         else:
-            value = DataBase.updateBikeID(json_string)
+            value = db.updateBikeID(json_string)
             if(value["error"]):
                 return {"error": True, "message": value["message"]}
     #return {value["lool"]}
@@ -338,7 +338,7 @@ def tempBikeID(json_string):
         if(key not in json_string):
             return {"error": True, "message": f"{key} not found"}
         else:
-            value = DataBase.updateTempBikeID(json_string)
+            value = db.updateTempBikeID(json_string)
             if(value["error"]):
                 return {"error": True, "message": value["message"]}
     #return {value["lool"]}
@@ -354,7 +354,7 @@ def remBikeID(json_string):
         if(key not in json_string):
             return {"error": True, "message": f"{key} not found"}
         else:
-            value = DataBase.removeBikeID(json_string)
+            value = db.removeBikeID(json_string)
             if(value["error"]):
                 return {"error": True, "message": value["message"]}
     #return {value["lool"]}
@@ -365,7 +365,7 @@ def remBikeID(json_string):
 
 
 def getCommand(json_input):
-    value = DataBase.getcmd(json_input)
+    value = db.getcmd(json_input)
     if(value["error"]):
         return {"error": True, "message": value["message"]}
     #return {value["lool"]}
@@ -383,7 +383,7 @@ def removeRideDB(json_input):
         if(key not in json_input):
             return {"error": True, "message": f"{key} not found"}
         
-    value = DataBase.removeRideNOW(json_input)
+    value = db.removeRideNOW(json_input)
     if(value["error"]):
         return {"error": True, "message": value["message"]}
     return {"error":False, "message":value["message"]}
@@ -391,7 +391,7 @@ def removeRideDB(json_input):
 
 
 def getUserBike(json_input):
-    value = DataBase.getUserB(json_input)
+    value = db.getUserB(json_input)
     if(value["error"]):
         return {"error": True, "message": value["message"]}
     #return {value["lool"]}
@@ -401,7 +401,7 @@ def getUserBike(json_input):
 
     
 def getUserTempBike(json_input):
-    value = DataBase.getUserTempB(json_input)
+    value = db.getUserTempB(json_input)
     if(value["error"]):
         return {"error": True, "message": value["message"]}
     #return {value["lool"]}
@@ -418,7 +418,7 @@ def forgotPassword(json_string, code):
            # code = bcrypt.generate_password_hash(code)
             code = bcrypt.generate_password_hash(code)
             
-            value = DataBase.forgotPassWord(json_string, code)
+            value = db.forgotPassWord(json_string, code)
             if(value["error"]):
                 return {"error": True, "message": value["message"]}
     #return {value["lool"]}
@@ -430,7 +430,7 @@ def removeCode(json_input):
         if(key not in json_input):
             return {"error": True, "message": f"{key} not found"}
         
-    value = DataBase.removeCodeNOW(json_input)
+    value = db.removeCodeNOW(json_input)
     if(value["error"]):
         return {"error": True, "message": value["message"]}
     return {"error":False, "message":value["message"]}
@@ -448,7 +448,7 @@ def checkCode(json_input):
         if(key not in json_input):
             return {"error": True, "message": f"{key} not found"}
         
-    value = DataBase.checkCodeNOW(json_input)
+    value = db.checkCodeNOW(json_input)
     
     if(value["error"]):
         return {"error": True, "message": value["message"]}
@@ -457,7 +457,7 @@ def checkCode(json_input):
             return {"error":True, "message":"You have not requested a code yet!"}
         else:
             if bcrypt.check_password_hash(value["code"], json_input["code"]):
-                #DataBase.removeCodeNOW(json_input)
+                #db.removeCodeNOW(json_input)
                 return {"error":False, "message":"DONE!!"}
             else:
                 return {"error":True, "message":"The code is  incorrect, recheck your email!"}
@@ -476,7 +476,7 @@ def changePwEz(json_input):
             return {"error": True, "message": f"{key} not found"}
         
         newpw = {"newpw":bcrypt.generate_password_hash(json_input["newpassword"])}
-        changeIT = DataBase.changePW(json_input, newpw)
+        changeIT = db.changePW(json_input, newpw)
                             
         if changeIT["error"]:    
             return  {"error":False, "message": changeIT["message"]}  
