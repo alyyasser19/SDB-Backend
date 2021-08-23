@@ -1,22 +1,25 @@
-from .routes import app
+from routes import app
 from flask import request, Response
-from Main import db
-from Models.Cars import validate
+from DataBase import DataBase
+from Base_Station import validate
 import json
+db = DataBase()
 ########################################################################################################################
-@app.route('/cars/addcar', methods=['POST'])
-def AddCar():
+@app.route('/')
+def Welcome():
+    return "Welcome to the app!"
+########################################################################################################################
+@app.route('/infrastructures/addbasestaion', methods=['POST'])
+def AddInfra():
     validated = validate(request.form)
     error = validated["error"]
     output = dict()
     if not error:
         info = {"North": request.form['North'],
                 "East": request.form['East'],
-                "Name": request.form['Name'],
                 "IP": request.form['IP'],
-                "Port": request.form['Port'],
-                "Key": request.form["Key"]}
-        x = db.insertbs("car", info)
+                "Public_Key": request.form['Public_Key']}
+        x = db.insertbs("basestation", info)
         output = dict()
         output['data'] = None
         if x is None:
@@ -26,7 +29,7 @@ def AddCar():
             output['message'] = 'Success'
             output['error'] = False
         return Response(
-            response=json.dumps(output, default=str),
+            response=json.dumps(output,default=str),
             status=200,
             mimetype="application/json"
         )
@@ -41,12 +44,12 @@ def AddCar():
             mimetype="application/json"
         )
 ########################################################################################################################
-@app.route('/cars/getcar', methods=['GET'])
-def getCar():
+@app.route('/infrastructures/getbasestation', methods=['GET'])
+def getInfra():
     info = {
         "Name": request.form["Name"]
     }
-    x = db.getbs("car", info)
+    x = db.getbs("basestation", info)
     output = dict()
     if x is not None:
         output['data'] = x
@@ -67,9 +70,9 @@ def getCar():
             mimetype="application/json"
         )
 ########################################################################################################################
-@app.route('/cars', methods=['GET'])
-def getAllCars():
-    x = db.getallbs("car")
+@app.route('/infrastructures', methods=['GET'])
+def getAllInfra():
+    x = db.getallbs("basestation")
     output = dict()
     if x is not None:
         output['data'] = x
@@ -90,40 +93,14 @@ def getAllCars():
             mimetype="application/json"
         )
 ########################################################################################################################
-@app.route('/cars/Nearestcar', methods=['GET'])
-def getlocationcars():
+@app.route('/infrastructures/Nearestbs', methods=['GET'])
+def get_location_infra():
     info = {
         "East": request.form["East"],
         "North": request.form["North"],
         "Number": request.form["Number"]
     }
-    x = db.get_locations("car", info)
-    output = dict()
-    if x is not None:
-        output['data'] = x
-        output['message'] = 'Success'
-        output['error'] = False
-        return Response(
-            response=json.dumps(x, default=str),
-            status=200,
-            mimetype="application/json"
-        )
-    else:
-        output['data'] = None
-        output['message'] = "False"
-        output['error'] = True
-        return Response(
-            response=json.dumps(output, default=str),
-            status=500,
-            mimetype="application/json"
-        )
- ########################################################################################################################   
-@app.route('/cars/UpdateCar', methods=['POST'])
-def Updatecar():
-    info = {    "Name": request.form['Name'],
-                "Key": request.form["Key"]}
-    
-    x = db.UpdateCar(info)
+    x = db.get_locations("basestation", info)
     output = dict()
     if x is not None:
         output['data'] = x
