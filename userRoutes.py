@@ -61,7 +61,7 @@ from functools import wraps
 app.config['SECRET_KEY'] = os.urandom(24)
 
 
-from app import db
+from DataBase import DataBase
 
 bcrypt = Bcrypt(app)
 
@@ -130,7 +130,7 @@ def sendEmail():
 @app.route('/users/register', methods=['POST'])
 def createUser():
     
-    val = db.emailExists(request.form)
+    val = DataBase.emailExists(request.form)
     
     if not val["error"]:
             
@@ -146,7 +146,7 @@ def createUser():
             #info = {"fname": request.form['fname'], "lname": request.form['lname'], "email": request.form['email'],"password": request.form['password'],"bikeID":None,"numbers":[],"rides":[]}
             info = {"fname": request.form['fname'], "lname": request.form['lname'], "email": request.form['email'], "password": hashedpw, "bikeID":"","tempBikeID":"","numbers":[],"rides":[], "numberOfRides":0, "code":""}
             
-            db.araf(info)
+            DataBase.araf(info)
             
         
             #app.config['MAIL_SERVER']='smtp.gmail.com'
