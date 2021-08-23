@@ -61,7 +61,8 @@ from functools import wraps
 app.config['SECRET_KEY'] = os.urandom(24)
 
 
-from app import db
+from DataBase import DataBase
+db = DataBase()
 
 bcrypt = Bcrypt(app)
 
