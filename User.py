@@ -1,10 +1,11 @@
 import re
 import json
-from app import db
+from DataBase import DataBase
 from werkzeug.datastructures import ImmutableMultiDict
 
 from flask_bcrypt import Bcrypt
 
+db = DataBase()
 
 bcrypt = Bcrypt()
 
