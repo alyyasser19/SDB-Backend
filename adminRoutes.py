@@ -1,5 +1,5 @@
-from .routes import app
-from flask import request,Response
+from routes import app
+from flask import Response
 import json
 
 @app.route('/admins/<id>', methods=['GET'])

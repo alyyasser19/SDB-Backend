@@ -1,66 +1,59 @@
-from flask.wrappers import Request
-from .routes import app
-from flask import request,Response
-import json
-from Models.User import registerValidate
+from routes import app
+from flask import Response
+from User import registerValidate
 
-from cryptography.fernet import Fernet
+from User import signinValidate
+from User import emailCheck
+from User import getNumbers
 
-from Models.User import signinValidate
-from Models.User import emailCheck
-from Models.User import getNumbers
+from User import editNum
+from User import removeNum
 
-from Models.User import editNum
-from Models.User import removeNum
+from User import createRideDB
 
-from Models.User import createRideDB
+from User import getUserBike
+from User import getCommand
 
-from Models.User import getUserBike
-from Models.User import getCommand
-
-from Models.User import removeCode
+from User import removeCode
 
 
-from Models.User import remBikeID
+from User import remBikeID
 
-from Models.User import bikeID
-
-
-from Models.User import getRides
-
-from Models.User import validEmail
-
-from Models.User import forgotPassword
+from User import bikeID
 
 
-from Models.User import email_func
-from Models.User import addNum
+from User import getRides
 
-from Models.User import changePassword
+from User import validEmail
 
-from Models.User import removeRideDB
+from User import forgotPassword
 
-from Models.User import tempBikeID
+from User import addNum
 
-from Models.User import getUserTempBike
+from User import changePassword
 
-from Models.User import checkCode
+from User import removeRideDB
 
-from Models.User import changePwEz
+from User import tempBikeID
 
-from Main import db
+from User import getUserTempBike
+
+from User import checkCode
+
+from User import changePwEz
 
 from flask_bcrypt import Bcrypt
 
 
-from flask_mail import Mail, Message
+#from flask_mail import Mail
+#, Message
 
 import random
 import string
 
 import json
 
-from flask import Flask, jsonify, request, make_response
+from flask import jsonify, request
 import jwt
 import datetime
 import os
@@ -68,7 +61,8 @@ from functools import wraps
 app.config['SECRET_KEY'] = os.urandom(24)
 
 
-from Main import db
+from DataBase import DataBase
+db = DataBase()
 
 bcrypt = Bcrypt(app)
 
@@ -111,6 +105,10 @@ def token_required(f):
 
 
 
+@app.route('/')
+def welcome():
+    return "Welcome to the app!"
+
 @app.route('/users/sendemail', methods=['POST'])
 def sendEmail():
     
@@ -121,11 +119,11 @@ def sendEmail():
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
     
-    mail = Mail(app)
+  #  mail = Mail(app)
 
-    msg = Message('Hello', sender = 'BikeroonsApp@gmail.com', recipients = ['lydiay711@gmail.com'])
-    msg.body = "This is the email body"
-    mail.send(msg)
+  #  msg = Message('Hello', sender = 'BikeroonsApp@gmail.com', recipients = ['lydiay711@gmail.com'])
+   # msg.body = "This is the email body"
+   # mail.send(msg)
     return "Sent"
 
 
@@ -195,6 +193,7 @@ def createUser():
 
 
 @app.route('/users/getuserbike/<email>', methods=['GET'])
+@token_required
 def getUserbike(email):
     validated = getUserBike(email)
     
@@ -596,11 +595,11 @@ def forgotPW():
         app.config['MAIL_USE_TLS'] = False
         app.config['MAIL_USE_SSL'] = True
         
-        mail = Mail(app)
+     #  mail = Mail(app)
     
-        msg = Message('Code to change password', sender = 'BikeroonsApp@gmail.com', recipients = [request.form['email']])
-        msg.body = "You have requested to change your password. To proceed with the process, enter the following code in the space provided in Bikeroons: "+code
-        mail.send(msg)
+      #  msg = Message('Code to change password', sender = 'BikeroonsApp@gmail.com', recipients = [request.form['email']])
+     #   msg.body = "You have requested to change your password. To proceed with the process, enter the following code in the space provided in Bikeroons: "+code
+      #  mail.send(msg)
         
         return Response(
             response=json.dumps({
