@@ -19,18 +19,24 @@ cache = Cache(app)
 
 east = Cars.car["East"]
 north = Cars.car["North"]
-bike_name = Cars.car["Name"]
 speed = Cars.car["Speed"]
+bike_name = Cars.car["Name"]
+locked = Cars.car["Locked"]
+shared = Cars.car["Shared"]
 ip = Cars.car["IP"]
 port = Cars.car["Port"]
-key = Cars.car["Key"]
+execute = Cars.car["Execute"]
+command = Cars.car["Command"]
+net_name = Cars.car["Current_Network_Name"]
+net_password = Cars.car["Current_Network_Password"]
 station_east = Base_Station.base_station["East"]
 station_north = Base_Station.base_station["North"]
 station_name = Base_Station.base_station["Name"]
 station_pass = Base_Station.base_station["Password"]
 
-bike = {"bikeEast": east, "bikeNorth": north, "bikeName": bike_name, "Speed": speed, "IP": ip,
-        "Port": port, "Key": key}
+bike = {"bikeEast": east, "bikeNorth": north, "Speed": speed, "bikeName": bike_name, "Locked": locked,
+        "Shared": shared, "IP": ip, "Port": port, "Execute": execute, "Command": command,
+        "Current Network Name": net_name, "Current Network Password": net_password}
 
 base_station = {"stationName": station_name, "stationPassword": station_pass, "stationEast": station_east,
                 "stationNorth": station_north}
