@@ -1,10 +1,9 @@
 import atexit
-from enum import Enum
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask
 import requests
 from flask_caching import Cache
-from Models import Cars, Base_Station
+from Models import Bike, Base_Station
 
 config = {
     "DEBUG": True,
@@ -17,18 +16,18 @@ app = Flask(__name__)
 app.config.from_mapping(config)
 cache = Cache(app)
 
-east = Cars.car["East"]
-north = Cars.car["North"]
-speed = Cars.car["Speed"]
-bike_name = Cars.car["Name"]
-locked = Cars.car["Locked"]
-shared = Cars.car["Shared"]
-ip = Cars.car["IP"]
-port = Cars.car["Port"]
-execute = Cars.car["Execute"]
-command = Cars.car["Command"]
-net_name = Cars.car["Current_Network_Name"]
-net_password = Cars.car["Current_Network_Password"]
+east = Bike.bike["East"]
+north = Bike.bike["North"]
+speed = Bike.bike["Speed"]
+bike_name = Bike.bike["Name"]
+locked = Bike.bike["Locked"]
+shared = Bike.bike["Shared"]
+ip = Bike.bike["IP"]
+port = Bike.bike["Port"]
+execute = Bike.bike["Execute"]
+command = Bike.bike["Command"]
+net_name = Bike.bike["Current_Network_Name"]
+net_password = Bike.bike["Current_Network_Password"]
 station_east = Base_Station.base_station["East"]
 station_north = Base_Station.base_station["North"]
 station_name = Base_Station.base_station["Name"]
@@ -38,11 +37,11 @@ bike = {"bikeEast": east, "bikeNorth": north, "Speed": speed, "bikeName": bike_n
         "Shared": shared, "IP": ip, "Port": port, "Execute": execute, "Command": command,
         "Current Network Name": net_name, "Current Network Password": net_password}
 
-base_station = {"stationName": station_name, "stationPassword": station_pass, "stationEast": station_east,
-                "stationNorth": station_north}
+base_station = {"stationEast": station_east, "stationNorth": station_north, "stationName": station_name,
+                "stationPassword": station_pass}
 
 
-@app.route('/', methods= ['GET'])
+@app.route('/', methods=['GET'])
 def wakeup():
     url = 'https://github.com/alyyasser19/SDB-Backend/blob/main/auth.py'
     requests.get(url)
