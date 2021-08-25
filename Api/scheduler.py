@@ -4,6 +4,7 @@ from flask import Flask
 import requests
 from flask_caching import Cache
 from Models import Bike, Base_Station
+from flask_pymongo import PyMongo
 
 config = {
     "DEBUG": True,
@@ -11,12 +12,13 @@ config = {
     "CACHE_DEFAULT_TIMEOUT": 300
 }
 
-
 app = Flask(__name__)
 app.config.from_mapping(config)
+app.config["MONGO_URI"] = "dblink"
+mongo = PyMongo(app)
 cache = Cache(app)
 
-east = Bike.bike["East"]
+east = Bike.bike["East"]  # mongo.db.bike.find({"East": True})
 north = Bike.bike["North"]
 speed = Bike.bike["Speed"]
 bike_name = Bike.bike["Name"]
@@ -43,7 +45,7 @@ base_station = {"stationEast": station_east, "stationNorth": station_north, "sta
 
 @app.route('/', methods=['GET'])
 def wakeup():
-    url = 'https://github.com/alyyasser19/SDB-Backend/blob/main/auth.py'
+    url = 'https://github.com/alyyasser19/SDB-Backend/blob/main/auth.py'  # change with deployed heroku server
     requests.get(url)
     requests.post(url, data="")
     url1 = 'https://github.com/alyyasser19/SDB-Backend/blob/bike/auth.py'
@@ -61,7 +63,6 @@ def wakeup():
     requests.post(url3, data="")
     requests.get(url)
     requests.post(url, data="")
-    return
 
 
 scheduler = BackgroundScheduler()
@@ -69,7 +70,6 @@ scheduler.add_job(func=wakeup, trigger="interval", minutes=30)
 scheduler.start()
 
 atexit.register(lambda: scheduler.shutdown(wait=False))
-
 
 if __name__ == '__main__':
     app.run(debug=True)
