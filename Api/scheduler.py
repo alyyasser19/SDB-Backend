@@ -4,7 +4,6 @@ from flask import Flask
 import requests
 from flask_caching import Cache
 from Models import Bike, Base_Station
-from flask_pymongo import PyMongo
 
 config = {
     "DEBUG": True,
@@ -14,11 +13,9 @@ config = {
 
 app = Flask(__name__)
 app.config.from_mapping(config)
-app.config["MONGO_URI"] = "dblink"
-mongo = PyMongo(app)
 cache = Cache(app)
 
-east = Bike.bike["East"]  # mongo.db.bike.find({"East": True})
+east = Bike.bike["East"]
 north = Bike.bike["North"]
 speed = Bike.bike["Speed"]
 bike_name = Bike.bike["Name"]
