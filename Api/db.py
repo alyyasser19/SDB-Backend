@@ -5,7 +5,7 @@ from pymongo.errors import CollectionInvalid
 from collections import OrderedDict
 
 
-class DataBase:
+class db:
     def __init__(self):
         client = pymongo.MongoClient(f"mongodb+srv://{Config.DB_USER}:{urllib.parse.quote(Config.DB_PASS)}"
                                      f"@cluster0.ibr9d.mongodb.net/{Config.DB_NAME}?retryWrites=true&w=majority")
