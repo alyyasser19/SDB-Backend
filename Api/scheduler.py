@@ -42,20 +42,20 @@ base_station = {"stationEast": station_east, "stationNorth": station_north, "sta
 
 @app.route('/', methods=['GET'])
 def wakeup():
-    url = 'https://github.com/alyyasser19/SDB-Backend/blob/main/auth.py'  # change with deployed heroku server
+    url = 'https://sdb-app-main.herokuapp.com/' 
     requests.get(url)
     requests.post(url, data="")
-    url1 = 'https://github.com/alyyasser19/SDB-Backend/blob/bike/auth.py'
+    url1 = 'https://sdb-app-bike.herokuapp.com/'
     requests.get(url1)
     requests.post(url1, data="")
     requests.get(url)
     requests.post(url, data="")
-    url2 = 'https://github.com/alyyasser19/SDB-Backend/blob/carinfra/auth.py'
+    url2 = 'https://sdb-app-carinfra.herokuapp.com/'
     requests.get(url2)
     requests.post(url2, data="")
     requests.get(url)
     requests.post(url, data="")
-    url3 = 'https://github.com/alyyasser19/SDB-Backend/blob/users/auth.py'
+    url3 = 'https://sdb-app-users.herokuapp.com/'
     requests.get(url3)
     requests.post(url3, data="")
     requests.get(url)
