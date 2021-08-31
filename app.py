@@ -6,4 +6,4 @@ app = routes.app
 db = DataBase()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5001)

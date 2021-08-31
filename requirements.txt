@@ -10,8 +10,10 @@ colorama
 dnspython
 itsdangerous
 jsonify
-numpy
+numpy~=1.21.2
 pip
 setuptools
 wheel
 
+
+requests~=2.26.0
