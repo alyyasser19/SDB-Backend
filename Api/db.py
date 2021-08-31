@@ -5,7 +5,11 @@ from pymongo.errors import CollectionInvalid
 from collections import OrderedDict
 
 
+<<<<<<< HEAD
 class DataBase:
+=======
+class db:
+>>>>>>> parent of 99a649d (Revert "Merge branch 'main' of https://github.com/alyyasser19/SDB-Backend into main")
     def __init__(self):
         client = pymongo.MongoClient(f"mongodb+srv://{Config.DB_USER}:{urllib.parse.quote(Config.DB_PASS)}"
                                      f"@cluster0.ibr9d.mongodb.net/{Config.DB_NAME}?retryWrites=true&w=majority")
@@ -61,4 +65,8 @@ try:
 except CollectionInvalid:
     pass
 
+<<<<<<< HEAD
 command_result = client.command(OrderedDict(query))
+=======
+command_result = client.command(OrderedDict(query))
+>>>>>>> parent of 99a649d (Revert "Merge branch 'main' of https://github.com/alyyasser19/SDB-Backend into main")
