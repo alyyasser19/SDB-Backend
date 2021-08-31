@@ -61,8 +61,8 @@ def AddBike():
         r = requests.post(url="http://localhost:5001/bikes/Addbike")
         return req
     if flask.request.form["state"] == 'received':
-        print("Bike Added!!")  # testing
-        return "Bike Added"
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
 
 
 @app.route('/bikes/getbike', methods=['POST'])
@@ -92,6 +92,94 @@ def getAllBikes():
     if flask.request.form["state"] == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
         return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/bikes/NearestBikes', methods=['POST'])
+def get_location():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+
+    if flask.request.form["state"] == 'sent':
+        r = requests.post(url="http://localhost:5001/bikes/NearestBikes")
+        return req
+    if flask.request.form["state"] == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/bikes/UpdateBike', methods=['POST'])
+def UpdateBike():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    if flask.request.form["state"] == 'sent':
+        r = requests.post(url="http://localhost:5001/bikes/UpdateBike")
+        return req
+    if flask.request.form["state"] == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/bikes/updateCommand', methods=['POST'])
+def updateCommand():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    if flask.request.form["state"] == 'sent':
+        r = requests.post(url="http://localhost:5001/bikes/updateCommand")
+        return req
+    if flask.request.form["state"] == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/bikes/lockBike', methods=['POST'])
+def updateLocked():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    if flask.request.form["state"] == 'sent':
+        r = requests.post(url="http://localhost:5001/bikes/lockBike")
+        return req
+    if flask.request.form["state"] == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/bikes/unlockBike', methods=['POST'])
+def updateunLocked():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    if flask.request.form["state"] == 'sent':
+        r = requests.post(url="http://localhost:5001/bikes/unlockBike")
+        return req
+    if flask.request.form["state"] == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/bikes/updateBike2', methods=['POST'])
+def updateBike2():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    if flask.request.form["state"] == 'sent':
+        r = requests.post(url="http://localhost:5001/bikes/updateBike2")
+        return req
+    if flask.request.form["state"] == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+# User Routes
 
 
 @app.route('/test/<string>', methods=['GET'])
