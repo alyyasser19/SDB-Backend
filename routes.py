@@ -57,13 +57,14 @@ def AddBike():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/bikes/Addbike")
+        r = requests.post(url="http://localhost:5001/bikes/Addbike", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -76,13 +77,14 @@ def getBike():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/bikes/getbike")
+        r = requests.post(url="http://localhost:5001/bikes/getbike", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -95,13 +97,14 @@ def getAllBikes():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/bikes")
+        r = requests.post(url="http://localhost:5001/bikes", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -115,13 +118,14 @@ def get_location():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/bikes/NearestBikes")
+        r = requests.post(url="http://localhost:5001/bikes/NearestBikes", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -134,13 +138,14 @@ def UpdateBike():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/bikes/UpdateBike")
+        r = requests.post(url="http://localhost:5001/bikes/UpdateBike", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -153,13 +158,14 @@ def updateCommand():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/bikes/updateCommand")
+        r = requests.post(url="http://localhost:5001/bikes/updateCommand", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -172,13 +178,14 @@ def updateLocked():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/bikes/lockBike")
+        r = requests.post(url="http://localhost:5001/bikes/lockBike", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -191,13 +198,14 @@ def updateunLocked():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/bikes/unlockBike")
+        r = requests.post(url="http://localhost:5001/bikes/unlockBike", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -210,13 +218,14 @@ def updateBike2():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/bikes/updateBike2")
+        r = requests.post(url="http://localhost:5001/bikes/updateBike2", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -229,13 +238,14 @@ def sendEmail():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/sendemail")
+        r = requests.post(url="http://localhost:5001/users/sendemail", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -248,13 +258,14 @@ def createUser():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/register")
+        r = requests.post(url="http://localhost:5001/users/register", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -267,13 +278,14 @@ def getUserbike():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/getuserbike/<email>")
+        r = requests.post(url="http://localhost:5001/users/getuserbike/<email>", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -286,13 +298,14 @@ def getUserTempBike():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/getusertempbike/<email>")
+        r = requests.post(url="http://localhost:5001/users/getusertempbike/<email>", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -305,13 +318,14 @@ def getCMD():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/getcommand")
+        r = requests.post(url="http://localhost:5001/users/getcommand", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -324,13 +338,14 @@ def updateBikeID():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/updatebikeid")
+        r = requests.post(url="http://localhost:5001/users/updatebikeid", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -343,13 +358,14 @@ def updateTempBikeID():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/updatetempbikeid")
+        r = requests.post(url="http://localhost:5001/users/updatetempbikeid", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -362,13 +378,14 @@ def nullifyBikeID():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/nullifybikeid")
+        r = requests.post(url="http://localhost:5001/users/nullifybikeid", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -381,13 +398,14 @@ def addNumber():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/addnumber")
+        r = requests.post(url="http://localhost:5001/users/addnumber", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -400,13 +418,14 @@ def editNumber():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/editnumber")
+        r = requests.post(url="http://localhost:5001/users/editnumber", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -419,13 +438,14 @@ def removeNumber():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/removenumber")
+        r = requests.post(url="http://localhost:5001/users/removenumber", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -438,13 +458,14 @@ def getEmergencyNumbers():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/gimmenums/<email>")
+        r = requests.post(url="http://localhost:5001/users/gimmenums/<email>", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -457,13 +478,14 @@ def createRide():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/createRide")
+        r = requests.post(url="http://localhost:5001/users/createRide", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -476,13 +498,14 @@ def removeRide():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/removeride")
+        r = requests.post(url="http://localhost:5001/users/removeride", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -495,13 +518,14 @@ def getRides():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/getrides/<email>")
+        r = requests.post(url="http://localhost:5001/users/getrides/<email>", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -514,13 +538,14 @@ def checkEmail():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/checkemail")
+        r = requests.post(url="http://localhost:5001/users/checkemail", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -533,13 +558,14 @@ def emailVall():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/emailVal")
+        r = requests.post(url="http://localhost:5001/users/emailVal", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -552,13 +578,14 @@ def forgotPW():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/forgotpassword")
+        r = requests.post(url="http://localhost:5001/users/forgotpassword", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -571,13 +598,14 @@ def checkcode():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/checkcode")
+        r = requests.post(url="http://localhost:5001/users/checkcode", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -590,13 +618,14 @@ def changePWEZ():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/changepwez")
+        r = requests.post(url="http://localhost:5001/users/changepwez", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -609,13 +638,14 @@ def removecode():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/removecode")
+        r = requests.post(url="http://localhost:5001/users/removecode", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -628,13 +658,14 @@ def login():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/login")
+        r = requests.post(url="http://localhost:5001/users/login", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
@@ -647,17 +678,200 @@ def changepw():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     req.headers['Main_Auth'] = token
+    data = {'Token': token}
     try:
         state = flask.request.form["state"]
     except:
         state = 'sent'
 
     if state == 'sent':
-        r = requests.post(url="http://localhost:5001/users/changepw")
+        r = requests.post(url="http://localhost:5001/users/changepw", data=data)
         return req
     if state == 'received':
         print(json.dumps(flask.request.form['Response']))  # testing
         return json.dumps(flask.request.form['Response'])
+
+# Car Routes
+@app.route('/cars/addcar', methods=['POST'])
+def AddCar():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    data = {'Token': token}
+    try:
+        state = flask.request.form["state"]
+    except:
+        state = 'sent'
+
+    if state == 'sent':
+        r = requests.post(url="http://localhost:5001/cars/addcar", data=data)
+        return req
+    if state == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/cars/getcar', methods=['POST'])
+def getCar():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    data = {'Token': token}
+    try:
+        state = flask.request.form["state"]
+    except:
+        state = 'sent'
+
+    if state == 'sent':
+        r = requests.post(url="http://localhost:5001/cars/getcar", data=data)
+        return req
+    if state == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/cars', methods=['POST'])
+def getAllCars():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    data = {'Token': token}
+    try:
+        state = flask.request.form["state"]
+    except:
+        state = 'sent'
+
+    if state == 'sent':
+        r = requests.post(url="http://localhost:5001/cars", data=data)
+        return req
+    if state == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/cars/Nearestcar', methods=['POST'])
+def getlocationcars():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    data = {'Token': token}
+    try:
+        state = flask.request.form["state"]
+    except:
+        state = 'sent'
+
+    if state == 'sent':
+        r = requests.post(url="http://localhost:5001/cars/Nearestcar", data=data)
+        return req
+    if state == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/cars/UpdateCar', methods=['POST'])
+def Updatecar():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    data = {'Token': token}
+    try:
+        state = flask.request.form["state"]
+    except:
+        state = 'sent'
+
+    if state == 'sent':
+        r = requests.post(url="http://localhost:5001/cars/UpdateCar", data=data)
+        return req
+    if state == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+# Infra Routes
+@app.route('/infrastructures/addbasestaion', methods=['POST'])
+def AddInfra():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    data = {'Token': token}
+    try:
+        state = flask.request.form["state"]
+    except:
+        state = 'sent'
+
+    if state == 'sent':
+        r = requests.post(url="http://localhost:5001/infrastructures/addbasestaion", data=data)
+        return req
+    if state == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/infrastructures/getbasestation', methods=['POST'])
+def getInfra():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    data = {'Token': token}
+    try:
+        state = flask.request.form["state"]
+    except:
+        state = 'sent'
+
+    if state == 'sent':
+        r = requests.post(url="http://localhost:5001/infrastructures/getbasestation", data=data)
+        return req
+    if state == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/infrastructures', methods=['POST'])
+def getAllInfra():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    data = {'Token': token}
+    try:
+        state = flask.request.form["state"]
+    except:
+        state = 'sent'
+
+    if state == 'sent':
+        r = requests.post(url="http://localhost:5001/infrastructures", data=data)
+        return req
+    if state == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
+@app.route('/infrastructures/Nearestbs', methods=['POST'])
+def get_location_infra():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    req.headers['Main_Auth'] = token
+    data = {'Token': token}
+    try:
+        state = flask.request.form["state"]
+    except:
+        state = 'sent'
+
+    if state == 'sent':
+        r = requests.post(url="http://localhost:5001/infrastructures/Nearestbs", data=data)
+        return req
+    if state == 'received':
+        print(json.dumps(flask.request.form['Response']))  # testing
+        return json.dumps(flask.request.form['Response'])
+
+
 @app.route('/test/<string>', methods=['GET'])
 # @cache.cached(timeout=120)
 def test(string):
