@@ -54,7 +54,7 @@ def Welcome():
 ##########################################################################################################################
 @app.route('/bikes/Addbike', methods=['POST'])
 def AddBike():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -125,7 +125,7 @@ def AddBike():
 ##########################################################################################################################
 @app.route('/bikes/getbike', methods=['POST'])  # here
 def getBike():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -180,7 +180,7 @@ def getBike():
 # ########################################################################################################################
 @app.route('/bikes', methods=['POST'])
 def getAllBikes():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -230,7 +230,7 @@ def getAllBikes():
 ##########################################################################################################################
 @app.route('/bikes/NearestBikes', methods=['POST'])  # and here
 def get_location():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -286,7 +286,7 @@ def get_location():
 ##########################################################################################################################
 @app.route('/bikes/UpdateBike', methods=['POST'])
 def UpdateBike():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -351,7 +351,7 @@ def UpdateBike():
 
 @app.route('/bikes/updateCommand', methods=['POST'])
 def updateCommand():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -402,7 +402,7 @@ def updateCommand():
 ##########################################################################################################################
 @app.route('/bikes/lockBike', methods=['POST'])
 def updateLocked():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -452,7 +452,7 @@ def updateLocked():
 ##########################################################################################################################
 @app.route('/bikes/unlockBike', methods=['POST'])
 def updateunLocked():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -503,7 +503,7 @@ def updateunLocked():
 
 @app.route('/bikes/updateBike2', methods=['POST'])
 def updateBike2():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
