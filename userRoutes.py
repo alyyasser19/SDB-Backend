@@ -110,7 +110,7 @@ def welcome():
 
 @app.route('/users/sendemail', methods=['POST'])
 def sendEmail():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -153,7 +153,7 @@ def sendEmail():
 
 @app.route('/users/register', methods=['POST'])
 def createUser():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -237,7 +237,7 @@ def createUser():
 
 @app.route('/users/getuserbike/<email>', methods=['POST'])
 def getUserbike(email):
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -282,7 +282,7 @@ def getUserbike(email):
 
 @app.route('/users/getusertempbike/<email>', methods=['POST'])
 def getUserTempBike(email):
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -328,7 +328,7 @@ def getUserTempBike(email):
 
 @app.route('/users/getcommand', methods=['POST'])
 def getCMD():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -374,7 +374,7 @@ def getCMD():
 
 @app.route('/users/updatebikeid', methods=['POST'])
 def updateBikeID():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -420,7 +420,7 @@ def updateBikeID():
 
 @app.route('/users/updatetempbikeid', methods=['POST'])
 def updateTempBikeID():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -466,7 +466,7 @@ def updateTempBikeID():
 
 @app.route('/users/nullifybikeid', methods=['POST'])
 def nullifyBikeID():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -513,7 +513,7 @@ def nullifyBikeID():
 # EMERGENCY NUMBERS
 @app.route('/users/addnumber', methods=['POST'])
 def n5alas():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -558,7 +558,7 @@ def n5alas():
 
 @app.route('/users/editnumber', methods=['POST'])
 def editNumber():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -603,7 +603,7 @@ def editNumber():
 
 @app.route('/users/removenumber', methods=['POST'])
 def removeNumber():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -648,7 +648,7 @@ def removeNumber():
 
 @app.route('/users/gimmenums/<email>', methods=['POST'])
 def getEmergencyNumbers(email):
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -701,7 +701,7 @@ def getEmergencyNumbers(email):
 # create a new ride with (ride number, history, startDate, endDate, startTime, endTime)
 @app.route('/users/createRide', methods=['POST'])
 def createRide():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -746,7 +746,7 @@ def createRide():
 
 @app.route('/users/removeride', methods=['POST'])
 def removeRide():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -793,7 +793,7 @@ def removeRide():
 
 @app.route('/users/getrides/<email>', methods=['POST'])
 def getRide(email):
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -844,7 +844,7 @@ def getRide(email):
 
 @app.route('/users/checkemail', methods=['POST'])
 def checkEmail():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -889,7 +889,7 @@ def checkEmail():
 
 @app.route('/users/emailVal', methods=['POST'])
 def emailVall():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -936,7 +936,7 @@ def emailVall():
 
 @app.route('/users/forgotpassword', methods=['POST'])
 def forgotPW():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -999,7 +999,7 @@ def forgotPW():
 
 @app.route('/users/checkcode', methods=['POST'])
 def checkcode():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -1045,7 +1045,7 @@ def checkcode():
 
 @app.route('/users/changepwez', methods=['POST'])
 def changePWEZ():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -1094,7 +1094,7 @@ def changePWEZ():
 
 @app.route('/users/removecode', methods=['POST'])
 def removecode():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -1138,7 +1138,7 @@ def removecode():
 
 @app.route('/users/login', methods=['POST'])
 def login():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
@@ -1199,7 +1199,7 @@ def login():
 
 @app.route('/users/changepw', methods=['POST'])
 def changepw():
-    token = flask.request.form["token"]
+    token = flask.request.form["Token"]
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
