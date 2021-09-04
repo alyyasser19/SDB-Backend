@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="329d6c38-d0dd-4478-a7e9-9b05ad785a74" name="Default Changelist" comment="" />
+    <list default="true" id="329d6c38-d0dd-4478-a7e9-9b05ad785a74" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/API/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bikeRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/bikeRoutes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,12 +24,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/API" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Work\SDB-Backend\bike\API" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Work\SDB-Backend\bike\Models" />
+      <recent name="D:\Work\SDB-Backend\bike\API" />
+      <recent name="D:\Work\SDB-Backend\bike" />
       <recent name="D:\Work\SDB-Backend\bike\SDB-Backend" />
     </key>
   </component>

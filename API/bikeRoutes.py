@@ -1,14 +1,12 @@
 import flask
-from routes import app
-from flask import Flask, jsonify, request, make_response, Response
+from API.routes import app
+from flask import jsonify, request
 import jwt
 import datetime
-import os
 from functools import wraps
 import json
 from DataBase import DataBase
-from Bike import validate
-import requests
+from Models.Bike import validate
 
 db = DataBase()
 app.config["SECRET_KEY"] = "key"
@@ -23,7 +21,7 @@ def token_required(f):
         if not token:
             txt = {"Action": 'Token is missing', "date": datetime.datetime.utcnow()}
             # jsontxt = json.dumps(txt)
-            jsonFile = open("log.json", 'w')
+            jsonFile = open("../log.json", 'w')
             # jsonFile.write(jsontxt)
             jsonFile.close()
 
@@ -35,7 +33,7 @@ def token_required(f):
         except:
             txt = {"Action": 'Token is Invalid', "date": datetime.datetime.utcnow()}
             # jsontxt = json.dumps(txt)
-            jsonFile = open("log.json", 'w')
+            jsonFile = open("../log.json", 'w')
             # jsonFile.write(jsontxt)
             jsonFile.close()
             return jsonify({'message': 'Token is invalid!'}), 403
@@ -54,23 +52,20 @@ def Welcome():
 ##########################################################################################################################
 @app.route('/bikes/Addbike', methods=['POST'])
 def AddBike():
-    token = flask.request.form["Token"]
     try:
+        token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("../log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 403,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/Addbike", data=data)
-        return resp
+                'status': 403}
+        return data
     validated = validate(request.form)
     error = validated["error"]
     output = dict()
@@ -99,13 +94,9 @@ def AddBike():
             output['error'] = False
         out = json.dumps(output, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 200,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/Addbike", data=data)
-        return resp
+                'status': 200}
+        return data
     else:
         x = None
         output['data'] = x
@@ -113,37 +104,28 @@ def AddBike():
         output['error'] = True
         out = json.dumps(output, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 500,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/Addbike", data=data)
-        return resp
+                'status': 500}
+        return data
 
 
 ##########################################################################################################################
 @app.route('/bikes/getbike', methods=['POST'])  # here
 def getBike():
-    token = flask.request.form["Token"]
     try:
+        token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("../log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 403,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/getbike", data=data)
-        return resp
-    print(request.form['Name'])
-    print(request.headers)
+                'status': 403}
+        return data
     info = {
         "Name": request.form["Name"]
     }
@@ -155,13 +137,9 @@ def getBike():
         output['error'] = False
         out = json.dumps(output, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 200,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/getbike", data=data)
-        return resp
+                'status': 200}
+        return data
     else:
         output['data'] = None
         output['message'] = "False"
@@ -170,33 +148,27 @@ def getBike():
         resp = flask.make_response(out)
         resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 500,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/getbike", data=data)
-        return resp
+                'status': 500}
+        return data
 
 
 # ########################################################################################################################
 @app.route('/bikes', methods=['POST'])
 def getAllBikes():
-    token = flask.request.form["Token"]
     try:
+        token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("../log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 403,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes", data=data)
-        return resp
+                'status': 403}
+        return data
     x = db.getallbike()
     output = dict()
     if x is not None:
@@ -205,48 +177,37 @@ def getAllBikes():
         output['error'] = False
         out = json.dumps(output, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 200,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes", data=data)
-        return resp
+                'status': 200}
+        return data
     else:
         output['data'] = None
         output['message'] = "False"
         output['error'] = True
         out = json.dumps(output, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 500,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes", data=data)
-        return resp
+                'status': 500}
+        return data
 
 
 ##########################################################################################################################
 @app.route('/bikes/NearestBikes', methods=['POST'])  # and here
 def get_location():
-    token = flask.request.form["Token"]
     try:
+        token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("../log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 403,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/NearestBikes", data=data)
-        return resp
+                'status': 403}
+        return data
     info = {
         "East": request.form["East"],
         "North": request.form["North"],
@@ -261,48 +222,37 @@ def get_location():
         output['error'] = False
         out = json.dumps(output, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 200,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/NearestBikes", data=data)
-        return resp
+                'status': 200}
+        return data
     else:
         output['data'] = None
         output['message'] = "False"
         output['error'] = True
         out = json.dumps(output, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 500,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/NearestBikes", data=data)
-        return resp
+                'status': 500}
+        return data
 
 
 ##########################################################################################################################
 @app.route('/bikes/UpdateBike', methods=['POST'])
 def UpdateBike():
-    token = flask.request.form["Token"]
     try:
+        token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("../log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 403,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/UpdateBike", data=data)
-        return resp
+                'status': 403}
+        return data
     info = {
         "East": request.form["East"],
         "North": request.form["North"],
@@ -325,49 +275,38 @@ def UpdateBike():
         output['error'] = False
         out = json.dumps(output, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 200,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/UpdateBike", data=data)
-        return resp
+                'status': 200}
+        return data
     else:
         output['data'] = None
         output['message'] = "False"
         output['error'] = True
         out = json.dumps(output, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 500,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/Updatebike", data=data)
-        return resp
+                'status': 500}
+        return data
 
 
 ##########################################################################################################################
 
 @app.route('/bikes/updateCommand', methods=['POST'])
 def updateCommand():
-    token = flask.request.form["Token"]
     try:
+        token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("../log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 403,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/updateCommand", data=data)
-        return resp
+                'status': 403}
+        return data
     info = {
         "Name": request.form["Name"],
         "Command": request.form["Command"]
@@ -380,45 +319,34 @@ def updateCommand():
 
         out = json.dumps(message, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 200,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/updateCommand", data=data)
-        return resp
+                'status': 200}
+        return data
     else:
         out = json.dumps({"message": x["message"]})
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 500,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/updateCommand", data=data)
-        return resp
+                'status': 500}
+        return data
 
 
 ##########################################################################################################################
 @app.route('/bikes/lockBike', methods=['POST'])
 def updateLocked():
-    token = flask.request.form["Token"]
     try:
+        token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("../log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 403,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/lockBike", data=data)
-        return resp
+                'status': 403}
+        return data
     info = {
         "Name": request.form["Name"]
     }
@@ -430,45 +358,34 @@ def updateLocked():
 
         out = json.dumps(message, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 200,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/lockBike", data=data)
-        return resp
+                'status': 200}
+        return data
     else:
         out = json.dumps({"message": x["message"]})
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 500,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/lockBike", data=data)
-        return resp
+                'status': 500}
+        return data
 
 
 ##########################################################################################################################
 @app.route('/bikes/unlockBike', methods=['POST'])
 def updateunLocked():
-    token = flask.request.form["Token"]
     try:
+        token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("../log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 403,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/unlockBike", data=data)
-        return resp
+                'status': 403}
+        return data
     info = {
         "Name": request.form["Name"]
     }
@@ -480,46 +397,35 @@ def updateunLocked():
 
         out = json.dumps(message, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 200,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/unlockBike", data=data)
-        return resp
+                'status': 200}
+        return data
     else:
         out = json.dumps({"message": x["message"]})
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 500,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/unlockBike", data=data)
-        return resp
+                'status': 500}
+        return data
 
 
 ##########################################################################################################################
 
 @app.route('/bikes/updateBike2', methods=['POST'])
 def updateBike2():
-    token = flask.request.form["Token"]
     try:
+        token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("../log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 403,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/updateBike2", data=data)
-        return resp
+                'status': 403}
+        return data
     info = {
         "Name": request.form["Name"],
         "North": request.form["North"],
@@ -534,21 +440,13 @@ def updateBike2():
 
         out = json.dumps(message, default=str)
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 200,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/updateBike2", data=data)
-        return resp
+                'status': 200}
+        return data
     else:
         out = json.dumps({"message": x["message"]})
         resp = flask.make_response(out)
-        resp.headers['Output'] = out
         data = {'Response': out,
-                'status': 500,
-                'token': token,
-                'state': 'received'}
-        r = requests.post(url="http://localhost:5000/bikes/updateBike2", data=data)
-        return resp
+                'status': 500}
+        return data
 ## VERY IMPORTANT NOTE, TELL ABDULRAHMAN THAT YOU CHANGED NEARESTBIKE AND GET BIKE TO POST!!
