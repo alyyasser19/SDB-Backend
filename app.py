@@ -1,5 +1,4 @@
-import routes
-import Config
+from Api import routes
 
 app = routes.app
 
