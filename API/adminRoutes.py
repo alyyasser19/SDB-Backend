@@ -1,4 +1,4 @@
-from routes import app
+from API.routes import app
 from flask import Response
 import json
 
