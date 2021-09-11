@@ -138,9 +138,74 @@ class DataBase:
         for record in cursor1:
             
             if record['Name'] == params['Name']:
+            
+              arr = [params['Base'], params['Distance'], params['Time']] 
                
-              self.db.bike.find_one_and_update({"Name" : params['Name']},{"$set":{"East": params["East"], "North":params["East"],"Speed": params["Speed"] }},upsert=True)
+              self.db.bike.find_one_and_update({"Name" : params['Name']},{"$set":{"East": params["East"], "North":params["North"],"Speed": params["Speed"], "Price":arr,"Shared": params["Shared"]}},upsert=True)
               return {"error": False, "message":"Done!"}  
             
                              
         return {"error": True, "message": "Bike not found"}
+#########################################################################################################################
+    def shareBike(self,params):
+        cursor1= self.db.bike.find()            
+        for record in cursor1:
+            
+            if record['Name'] == params['Name']:
+               
+              self.db.bike.find_one_and_update({"Name" : params['Name']},{"$set":{"Shared": "True"}},upsert=True)
+              return {"error": False, "message":"Done!"}  
+            
+        return {"error": True, "message": "Bike not found"}
+    
+    def stopShareBike(self,params):
+        cursor1= self.db.bike.find()            
+        for record in cursor1:
+            
+            if record['Name'] == params['Name']:
+               
+              self.db.bike.find_one_and_update({"Name" : params['Name']},{"$set":{"Shared":"False"}},upsert=True)
+              return {"error": False, "message":"Done!"}  
+            
+        return {"error": True, "message": "Bike not found"}
+    
+#####################################     LYDIA'S STUFF     #####################################
+
+    def editPrice(self,params):
+        cursor1= self.db.bike.find()            
+        for record in cursor1:
+            
+            if record['Name'] == params['Name']:
+               
+              arr = [params['Base'], params['Distance'], params['Time']] 
+               
+              self.db.bike.find_one_and_update({"Name" : params['Name']},{"$set":{"Price": arr,"Shared":"True"}},upsert=True)
+              return {"error": False, "message":"Done!"}  
+            
+        return {"error": True, "message": "Bike not found"}
+    
+    def getbikePrice(self, name):
+        db = self.db.bike
+        cursor = list(db.find())
+        for record in cursor:
+            if record["Name"] == name:
+                return {"error": True, "message": record["Price"]}
+        return None
+           
+    
+    def getbikeLocked(self, name):
+        db = self.db.bike
+        cursor = list(db.find())
+        for record in cursor:
+            if record["Name"] == name:
+                return {"error": True, "message": record["Locked"]}
+        return None    
+    
+    
+    def getbikeShared(self, name):
+        db = self.db.bike
+        cursor = list(db.find())
+        for record in cursor:
+            if record["Name"] == name:
+                return {"error": True, "message": record["Shared"]}
+        return None
