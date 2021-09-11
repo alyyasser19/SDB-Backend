@@ -710,6 +710,7 @@ def getBikeShared(name):
         data = {'Response': out,
                 'status': 403}
         return data
+        
     info = {
         "Name": request.form["Name"],
         "North": request.form["North"],
