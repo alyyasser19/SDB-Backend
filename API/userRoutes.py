@@ -1,3 +1,4 @@
+from typing_extensions import Required
 import flask
 
 from API.routes import app
@@ -122,6 +123,7 @@ def sendEmail():
                 'status': 403}
         return data
 
+
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USERNAME'] = 'bikeroonsApp@gmail.com'
@@ -158,6 +160,13 @@ def createUser():
                 'status': 403}
         return data
     val = db.emailExists(request.form)
+
+    info = {
+        "fname": request.form["fname"],
+        "lname": request.form["lname"],
+        "email": request.form["email"],
+        "password": request.form["password"]
+    }
 
     if not val["error"]:
 
@@ -224,6 +233,13 @@ def getUserbike(email):
         data = {'Response': out,
                 'status': 403}
         return data
+
+        
+        
+    #msh bta5od 7aga mn forms.data
+
+
+
     validated = getUserBike(email)
 
     error = validated["error"]
@@ -258,6 +274,8 @@ def getUserTempBike(email):
         data = {'Response': out,
                 'status': 403}
         return data
+
+
     validated = getUserTempBike(email)
 
     error = validated["error"]
@@ -293,6 +311,13 @@ def getCMD():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"]
+    }
+
+
     validated = getCommand(request.form)
 
     error = validated["error"]
@@ -328,6 +353,15 @@ def updateBikeID():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+
+    info = {
+        "email": request.form["email"],
+        "bikeID": request.form["bikeID"]
+    }
+
+
     validated = bikeID(request.form)
 
     error = validated["error"]
@@ -363,6 +397,14 @@ def updateTempBikeID():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"],
+        "tempBikeID": request.form["tempBikeID"]
+    }
+
+
     validated = tempBikeID(request.form)
 
     error = validated["error"]
@@ -398,6 +440,13 @@ def nullifyBikeID():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"]
+    }
+
+
     validated = remBikeID(request.form)
 
     error = validated["error"]
@@ -434,6 +483,14 @@ def addNumber():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"],
+        "numbers": request.form["numbers"]
+    }
+
+
     validated = addNum(request.form)
     error = validated["error"]
     message = validated["message"]
@@ -468,6 +525,15 @@ def editNumber():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"],
+        "numbers": request.form["numbers"],
+        "numbers2": request.form["numbers2"]
+    }
+
+
     validated = editNum(request.form)
     error = validated["error"]
 
@@ -502,6 +568,14 @@ def removeNumber():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"],
+        "numbers": request.form["numbers"]
+    }
+
+
     validated = removeNum(request.form)
     error = validated["error"]
 
@@ -536,6 +610,8 @@ def getEmergencyNumbers(email):
         data = {'Response': out,
                 'status': 403}
         return data
+
+
     dic = {"email": email}
     validated = getNumbers(dic)
     error = validated["error"]
@@ -579,6 +655,18 @@ def createRide():
                 'status': 403}
         return data
     # email_func
+
+
+    info = {
+        "email": request.form["email"],
+        "history":request.form["history"],
+        "startDate":request.form["startDate"],
+        "endDate":request.form["endDate"],
+        "startTime":request.form["startTime"],
+        "endTime":request.form["endTime"]
+    }
+
+
     validated = createRideDB(request.form)
     error = validated["error"]
 
@@ -613,6 +701,14 @@ def removeRide():
                 'status': 403}
         return data
     # email_func
+
+
+    info = {
+        "email": request.form["email"],
+        "rideNo":request.form["rideNo"]
+    }
+
+
     validated = removeRideDB(request.form)
     error = validated["error"]
 
@@ -689,6 +785,13 @@ def checkEmail():
                 'status': 403}
         return data
     # email_func
+
+
+    info = {
+        "email": request.form["email"]
+    }
+
+
     validated = emailCheck(request.form)
     error = validated["error"]
 
@@ -722,6 +825,13 @@ def emailVall():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"]
+    }
+
+
     validated = validEmail(request.form)
     error = validated["error"]
 
@@ -759,6 +869,14 @@ def forgotPW():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"]
+    }
+
+
+
     letters = string.ascii_letters
     code = ''.join(random.choice(letters) for i in range(4))
 
@@ -813,6 +931,15 @@ def checkcode():
         return data
     # bta5od email wel entered code mn el user
 
+
+
+    info = {
+        "email": request.form["email"],
+        "code": request.form["code"]
+    }
+
+
+
     validated = checkCode(request.form)
     error = validated["error"]
 
@@ -848,6 +975,12 @@ def changePWEZ():
                 'status': 403}
         return data
     # bta5od email wel entered code mn el user
+
+    info = {
+        "email": request.form["email"],
+        "newpassword":request.form["newpassword"]
+    }
+
 
     validated = changePwEz(request.form)
     error = validated["error"]
@@ -885,6 +1018,13 @@ def removecode():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"]
+    }
+
+
     validated = removeCode(request.form)
     error = validated["error"]
 
@@ -918,6 +1058,15 @@ def login():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"],
+        "password":request.form["password"]
+    }
+
+
+
     validated = signinValidate(request.form)
     error = validated["error"]
     message = validated["message"]
@@ -964,6 +1113,15 @@ def changepw():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "email": request.form["email"],
+        "password":request.form["password"],
+        "newpassword":request.form["newpassword"]
+    }
+
+
     validated = changePassword(request.form)
     error = validated["error"]
     msg = validated["message"]
@@ -1006,7 +1164,7 @@ def getname(email):
                 'status': 403}
         return data
 
-    
+
     validated = db.getName(email)
     error = validated["error"]
     
@@ -1029,6 +1187,8 @@ def getname(email):
             mimetype="application/json"
         )
     
+
+
 @app.route('/users/getbalance/<email>', methods=['GET'])
 def getbalance(email):
 
@@ -1090,6 +1250,11 @@ def nullifyTempBikeID():
         return data
 
 
+    info = {
+        "email": request.form["email"]
+    }
+
+
     validated = db.removeTempBikeID(request.form)
     
     error = validated["error"]
@@ -1131,6 +1296,12 @@ def addtobalance():
         data = {'Response': out,
                 'status': 403}
         return data
+
+
+    info = {
+        "Name": request.form["Name"],
+        "money":request.form["money"]
+    }
 
 
     validated = db.addToBalance(request.form)
