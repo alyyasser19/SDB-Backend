@@ -21,7 +21,7 @@ def token_required(f):
         if not token:
             txt = {"Action": 'Token is missing', "date": datetime.datetime.utcnow()}
             # jsontxt = json.dumps(txt)
-            jsonFile = open("../log.json", 'w')
+            jsonFile = open("log.json", 'w')
             # jsonFile.write(jsontxt)
             jsonFile.close()
 
@@ -33,7 +33,7 @@ def token_required(f):
         except:
             txt = {"Action": 'Token is Invalid', "date": datetime.datetime.utcnow()}
             # jsontxt = json.dumps(txt)
-            jsonFile = open("../log.json", 'w')
+            jsonFile = open("log.json", 'w')
             # jsonFile.write(jsontxt)
             jsonFile.close()
             return jsonify({'message': 'Token is invalid!'}), 403
@@ -58,7 +58,7 @@ def AddBike():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -118,7 +118,7 @@ def getBike():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -161,7 +161,7 @@ def getAllBikes():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -200,7 +200,7 @@ def get_location():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -245,7 +245,7 @@ def UpdateBike():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -299,7 +299,7 @@ def updateCommand():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -339,7 +339,7 @@ def updateLocked():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -378,7 +378,7 @@ def updateunLocked():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -418,7 +418,7 @@ def updateBike2():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
