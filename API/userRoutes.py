@@ -1,4 +1,3 @@
-from typing_extensions import Required
 import flask
 
 from API.routes import app
@@ -1103,7 +1102,7 @@ def changepw():
 ########### Newest stuff
 
 
-@app.route('/users/getname/<email>', methods=['GET'])
+@app.route('/users/getname/<email>', methods=['POST'])
 def getname(email):
     try:
         token = flask.request.form["Token"]
@@ -1111,7 +1110,7 @@ def getname(email):
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -1124,26 +1123,24 @@ def getname(email):
     error = validated["error"]
 
     if (not error):
-
-        return Response(
-            response=json.dumps({
-                "firstName": validated["firstName"],
-                "lastName": validated["lastName"]
-            }),
-            status=200,
-            mimetype="application/json"
-        )
+        out = json.dumps({
+            "firstName": validated["firstName"],
+            "lastName": validated["lastName"]
+        }, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=500,
-            mimetype="application/json"
-        )
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        resp.headers['Output'] = out
+        data = {'Response': out,
+                'status': 500}
+        return data
 
 
-@app.route('/users/getbalance/<email>', methods=['GET'])
+@app.route('/users/getbalance/<email>', methods=['POST'])
 def getbalance(email):
     try:
         token = flask.request.form["Token"]
@@ -1151,7 +1148,7 @@ def getbalance(email):
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -1164,22 +1161,20 @@ def getbalance(email):
     error = validated["error"]
 
     if (not error):
-
-        return Response(
-            response=json.dumps({
-                "balance": validated["balance"]
-            }),
-            status=200,
-            mimetype="application/json"
-        )
+        out = json.dumps({
+            "balance": validated["balance"]
+        }, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=500,
-            mimetype="application/json"
-        )
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        resp.headers['Output'] = out
+        data = {'Response': out,
+                'status': 500}
+        return data
 
 
 @app.route('/users/nullifytempbikeid', methods=['POST'])
@@ -1190,7 +1185,7 @@ def nullifyTempBikeID():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -1208,21 +1203,18 @@ def nullifyTempBikeID():
     error = validated["error"]
     message = validated["message"]
     if (not error):
-
-        return Response(
-            response=json.dumps(message),
-            # response=json.dumps(request.form),
-            status=200,
-            mimetype="application/json"
-        )
+        out = json.dumps(message, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=500,
-            mimetype="application/json"
-        )
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        resp.headers['Output'] = out
+        data = {'Response': out,
+                'status': 500}
+        return data
 
 
 @app.route('/users/addtobalance', methods=['POST'])  ## needs bike name (Name) and money number (money)
@@ -1233,7 +1225,7 @@ def addtobalance():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -1252,20 +1244,15 @@ def addtobalance():
     error = validated["error"]
     # message = validated["message"]
     if (not error):
-
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=200,
-            mimetype="application/json"
-        )
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            # response=json.dumps(request.form),
-            status=500,
-            mimetype="application/json"
-        )
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        resp.headers['Output'] = out
+        data = {'Response': out,
+                'status': 500}
+        return data
