@@ -231,10 +231,14 @@ def getBikePrice(name):
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-bike.herokuapp.com/bikes/getbikePrice/<name>", data={'Token': token,
-                                                                                                "Name": request.form["Name"],
-                                                                                                "North": request.form["North"],
-                                                                                                "East": request.form["East"],
-                                                                                                "Speed": request.form["Speed"]
+                                                                                                "Name": request.form[
+                                                                                                    "Name"],
+                                                                                                "North": request.form[
+                                                                                                    "North"],
+                                                                                                "East": request.form[
+                                                                                                    "East"],
+                                                                                                "Speed": request.form[
+                                                                                                    "Speed"]
                                                                                                 })
     return "Bike Server Communicated!"
 
@@ -245,11 +249,15 @@ def getBikeLocked(name):
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-bike.herokuapp.com/bikes/getBikeLocked/<name>", data={'Token': token,
-                                                                                                "Name": request.form["Name"],
-                                                                                                "North": request.form["North"],
-                                                                                                "East": request.form["East"],
-                                                                                                "Speed": request.form["Speed"]
-                                                                                                })
+                                                                                                 "Name": request.form[
+                                                                                                     "Name"],
+                                                                                                 "North": request.form[
+                                                                                                     "North"],
+                                                                                                 "East": request.form[
+                                                                                                     "East"],
+                                                                                                 "Speed": request.form[
+                                                                                                     "Speed"]
+                                                                                                 })
     return "Bike Server Communicated!"
 
 
@@ -259,11 +267,15 @@ def getBikeShared(name):
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-bike.herokuapp.com/bikes/getBikeShared/<name>", data={'Token': token,
-                                                                                                "Name": request.form["Name"],
-                                                                                                "North": request.form["North"],
-                                                                                                "East": request.form["East"],
-                                                                                                "Speed": request.form["Speed"]
-                                                                                                })
+                                                                                                 "Name": request.form[
+                                                                                                     "Name"],
+                                                                                                 "North": request.form[
+                                                                                                     "North"],
+                                                                                                 "East": request.form[
+                                                                                                     "East"],
+                                                                                                 "Speed": request.form[
+                                                                                                     "Speed"]
+                                                                                                 })
     return "Bike Server Communicated!"
 
 
@@ -283,11 +295,12 @@ def createUser():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/register", data={'Token': token,
-                                                                                "fname": request.form["fname"],
-                                                                                "lname": request.form["lname"],
-                                                                                "email": request.form["email"],
-                                                                                "password": request.form["password"]
-                                                                                })
+                                                                                      "fname": request.form["fname"],
+                                                                                      "lname": request.form["lname"],
+                                                                                      "email": request.form["email"],
+                                                                                      "password": request.form[
+                                                                                          "password"]
+                                                                                      })
     return "User Server Communicated!"
 
 
@@ -315,7 +328,7 @@ def getCMD():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/getcommand", data={'Token': token,
-                                                                                  "email": request.form['email']})
+                                                                                        "email": request.form['email']})
     return "User Server Communicated!"
 
 
@@ -325,7 +338,10 @@ def updateBikeID():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/updatebikeid", data={'Token': token,
-                                                                                    "email": request.form['email']})
+                                                                                          "email": request.form[
+                                                                                              "email"],
+                                                                                          "bikeID": request.form[
+                                                                                              "bikeID"]})
     return "User Server Communicated!"
 
 
@@ -335,7 +351,11 @@ def updateTempBikeID():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/updatetempbikeid", data={'Token': token,
-                                                                                        "email": request.form['email']})
+                                                                                              "email": request.form[
+                                                                                                  "email"],
+                                                                                              "tempBikeID":
+                                                                                                  request.form[
+                                                                                                      "tempBikeID"]})
     return "User Server Communicated!"
 
 
@@ -345,7 +365,8 @@ def nullifyBikeID():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/nullifybikeid", data={'Token': token,
-                                                                                     "email": request.form['email']})
+                                                                                           "email": request.form[
+                                                                                               'email']})
     return "User Server Communicated!"
 
 
@@ -355,8 +376,9 @@ def addNumber():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/addnumber", data={'Token': token,
-                                                                                 "email": request.form['email'],
-                                                                                 "numbers": request.form['numbers']})
+                                                                                       "email": request.form['email'],
+                                                                                       "numbers": request.form[
+                                                                                           'numbers']})
     return "User Server Communicated!"
 
 
@@ -366,8 +388,11 @@ def editNumber():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/editnumber", data={'Token': token,
-                                                                                  "email": request.form['email'],
-                                                                                  "numbers": request.form['numbers']})
+                                                                                        "email": request.form["email"],
+                                                                                        "numbers": request.form[
+                                                                                            "numbers"],
+                                                                                        "numbers2": request.form[
+                                                                                            "numbers2"]})
     return "User Server Communicated!"
 
 
@@ -377,8 +402,10 @@ def removeNumber():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/removenumber", data={'Token': token,
-                                                                                    "email": request.form['email'],
-                                                                                    "numbers": request.form['numbers']})
+                                                                                          "email": request.form[
+                                                                                              'email'],
+                                                                                          "numbers": request.form[
+                                                                                              'numbers']})
     return "User Server Communicated!"
 
 
@@ -397,15 +424,17 @@ def createRide():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/createRide", data={'Token': token,
-                                                                                  "email": request.form["email"],
-                                                                                  "rideNo": request.form["rideNo"],
-                                                                                  "history": request.form["history"],
-                                                                                  "startDate": request.form[
-                                                                                      "startDate"],
-                                                                                  "endDate": request.form["endDate"],
-                                                                                  "startTime": request.form[
-                                                                                      "startTime"],
-                                                                                  "endTime": request.form["endTime"]})
+                                                                                        "email": request.form["email"],
+                                                                                        "history": request.form[
+                                                                                            "history"],
+                                                                                        "startDate": request.form[
+                                                                                            "startDate"],
+                                                                                        "endDate": request.form[
+                                                                                            "endDate"],
+                                                                                        "startTime": request.form[
+                                                                                            "startTime"],
+                                                                                        "endTime": request.form[
+                                                                                            "endTime"]})
     return "User Server Communicated!"
 
 
@@ -415,8 +444,9 @@ def removeRide():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/removeride", data={'Token': token,
-                                                                                  "email": request.form["email"],
-                                                                                  "rideNo": request.form["rideNo"]})
+                                                                                        "email": request.form["email"],
+                                                                                        "rideNo": request.form[
+                                                                                            "rideNo"]})
     return "User Server Communicated!"
 
 
@@ -435,7 +465,7 @@ def checkEmail():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/checkemail", data={'Token': token,
-                                                                                  "email": request.form["email"]})
+                                                                                        "email": request.form["email"]})
     return "User Server Communicated!"
 
 
@@ -445,7 +475,7 @@ def emailVall():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/emailVal", data={'Token': token,
-                                                                                "email": request.form["email"]})
+                                                                                      "email": request.form["email"]})
     return "User Server Communicated!"
 
 
@@ -455,7 +485,8 @@ def forgotPW():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/forgotpassword", data={'Token': token,
-                                                                                      "email": request.form["email"]})
+                                                                                            "email": request.form[
+                                                                                                "email"]})
     return "User Server Communicated!"
 
 
@@ -465,8 +496,8 @@ def checkcode():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/checkcode", data={'Token': token,
-                                                                                 "email": request.form["email"],
-                                                                                 "code": request.form["code"]})
+                                                                                       "email": request.form["email"],
+                                                                                       "code": request.form["code"]})
     return "User Server Communicated!"
 
 
@@ -476,8 +507,9 @@ def changePWEZ():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/changepwez", data={'Token': token,
-                                                                                  "email": request.form["email"],
-                                                                                  "newpw": request.form["newpw"]})
+                                                                                        "email": request.form["email"],
+                                                                                        "newpassword": request.form[
+                                                                                            "newpassword"]})
     return "User Server Communicated!"
 
 
@@ -487,8 +519,7 @@ def removecode():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/removecode", data={'Token': token,
-                                                                                  "email": request.form["email"],
-                                                                                  "code": request.form["code"]})
+                                                                                        "email": request.form["email"]})
     return "User Server Communicated!"
 
 
@@ -498,8 +529,9 @@ def login():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/login", data={'Token': token,
-                                                                             "email": request.form["email"],
-                                                                             "password": request.form["password"]})
+                                                                                   "email": request.form["email"],
+                                                                                   "password": request.form[
+                                                                                       "password"]})
     return "User Server Communicated!"
 
 
@@ -509,8 +541,51 @@ def changepw():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-users.herokuapp.com/users/changepw", data={'Token': token,
-                                                                                "email": request.form["email"],
-                                                                                "password": request.form["password"]})
+                                                                                      "email": request.form["email"],
+                                                                                      "password": request.form[
+                                                                                          "password"],
+                                                                                      "newpassword": request.form[
+                                                                                          "newpassword"]})
+    return "User Server Communicated!"
+
+
+@app.route('/users/getname/<email>', methods=['POST'])
+def getname(email):
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    r = requests.post(url="https://sdb-app-users.herokuapp.com/users/getname/<email>", data={'Token': token})
+    return "User Server Communicated!"
+
+
+@app.route('/users/getbalance/<email>', methods=['POST'])
+def getbalance(email):
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    r = requests.post(url="https://sdb-app-users.herokuapp.com/users/getbalance/<email>", data={'Token': token})
+    return "User Server Communicated!"
+
+
+@app.route('/users/nullifytempbikeid', methods=['POST'])
+def nullifytempbikeid():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    r = requests.post(url="https://sdb-app-users.herokuapp.com/users/nullifytempbikeid", data={'Token': token,
+                                                                                               "email": request.form[
+                                                                                                   "email"]})
+    return "User Server Communicated!"
+
+
+@app.route('/users/addtobalance', methods=['POST'])
+def addtobalance():
+    token = jwt.encode({'user': auth, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'], "HS256")
+    req = flask.make_response(token)
+    r = requests.post(url="https://sdb-app-users.herokuapp.com/users/addtobalance", data={'Token': token,
+                                                                                               "Name": request.form["Name"],
+                                                                                               "money": request.form["money"]})
     return "User Server Communicated!"
 
 
@@ -521,12 +596,12 @@ def AddCar():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-carinfra.herokuapp.com/cars/addcar", data={'Token': token,
-                                                                                 "North": request.form['North'],
-                                                                                 "East": request.form['East'],
-                                                                                 "Name": request.form['Name'],
-                                                                                 "IP": request.form['IP'],
-                                                                                 "Port": request.form['Port'],
-                                                                                 "Key": request.form["Key"]})
+                                                                                      "North": request.form['North'],
+                                                                                      "East": request.form['East'],
+                                                                                      "Name": request.form['Name'],
+                                                                                      "IP": request.form['IP'],
+                                                                                      "Port": request.form['Port'],
+                                                                                      "Key": request.form["Key"]})
     return "Car Server Communicated!"
 
 
@@ -536,7 +611,7 @@ def getCar():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-carinfra.herokuapp.com/cars/getcar", data={'Token': token,
-                                                                                 "Name": request.form['Name']})
+                                                                                      "Name": request.form['Name']})
     return "Car Server Communicated!"
 
 
@@ -555,9 +630,11 @@ def getlocationcars():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-carinfra.herokuapp.com/cars/Nearestcar", data={'Token': token,
-                                                                                     "East": request.form["East"],
-                                                                                     "North": request.form["North"],
-                                                                                     "Number": request.form["Number"]})
+                                                                                          "East": request.form["East"],
+                                                                                          "North": request.form[
+                                                                                              "North"],
+                                                                                          "Number": request.form[
+                                                                                              "Number"]})
     return "Car Server Communicated!"
 
 
@@ -567,8 +644,8 @@ def Updatecar():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-carinfra.herokuapp.com/cars/UpdateCar", data={'Token': token,
-                                                                                    "Name": request.form['Name'],
-                                                                                    "Key": request.form["Key"]})
+                                                                                         "Name": request.form['Name'],
+                                                                                         "Key": request.form["Key"]})
     return "Car Server Communicated!"
 
 
@@ -579,14 +656,24 @@ def AddInfra():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-carinfra.herokuapp.com/infrastructures/addbasestation", data={'Token': token,
-                                                                                         "Name": request.form['Name'],
-                                                                                         "North": request.form['North'],
-                                                                                         "East": request.form['East'],
-                                                                                         "IP": request.form['IP'],
-                                                                                         "Public_Key": request.form[
-                                                                                             'Public_Key'],
-                                                                                         "Password": request.form[
-                                                                                             "Password"]})
+                                                                                                         "Name":
+                                                                                                             request.form[
+                                                                                                                 'Name'],
+                                                                                                         "North":
+                                                                                                             request.form[
+                                                                                                                 'North'],
+                                                                                                         "East":
+                                                                                                             request.form[
+                                                                                                                 'East'],
+                                                                                                         "IP":
+                                                                                                             request.form[
+                                                                                                                 'IP'],
+                                                                                                         "Public_Key":
+                                                                                                             request.form[
+                                                                                                                 'Public_Key'],
+                                                                                                         "Password":
+                                                                                                             request.form[
+                                                                                                                 "Password"]})
     return "Infra Server Communicated!"
 
 
@@ -596,7 +683,9 @@ def getInfra():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-carinfra.herokuapp.com/infrastructures/getbasestation", data={'Token': token,
-                                                                                         "Name": request.form["Name"]})
+                                                                                                         "Name":
+                                                                                                             request.form[
+                                                                                                                 "Name"]})
     return "Infra Server Communicated!"
 
 
@@ -615,9 +704,15 @@ def get_location_infra():
                        app.config['SECRET_KEY'], "HS256")
     req = flask.make_response(token)
     r = requests.post(url="https://sdb-app-carinfra.herokuapp.com/infrastructures/Nearestbs", data={'Token': token,
-                                                                                    "East": request.form["East"],
-                                                                                    "North": request.form["North"],
-                                                                                    "Number": request.form["Number"]})
+                                                                                                    "East":
+                                                                                                        request.form[
+                                                                                                            "East"],
+                                                                                                    "North":
+                                                                                                        request.form[
+                                                                                                            "North"],
+                                                                                                    "Number":
+                                                                                                        request.form[
+                                                                                                            "Number"]})
     return "Infra Server Communicated!"
 
 
