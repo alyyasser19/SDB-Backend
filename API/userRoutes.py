@@ -1,4 +1,3 @@
-from typing_extensions import Required
 import flask
 
 from API.routes import app
@@ -123,7 +122,6 @@ def sendEmail():
                 'status': 403}
         return data
 
-
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USERNAME'] = 'bikeroonsApp@gmail.com'
@@ -180,8 +178,10 @@ def createUser():
             hashedpw = validated["newpw"]
             # info = {"fname": request.form['fname'], "lname": request.form['lname'], "email": request.form['email'],"password": request.form['password'],"bikeID":None,"numbers":[],"rides":[{"rideNo":0},{"history":[]},{"startDate":""},{"endDate":""},{"startTime":""},{"endTime":""}]}
             # info = {"fname": request.form['fname'], "lname": request.form['lname'], "email": request.form['email'],"password": request.form['password'],"bikeID":None,"numbers":[],"rides":[]}
-            info = {"fname": request.form['fname'], "lname": request.form['lname'], "email": request.form['email'], "password": hashedpw, "bikeID":"","tempBikeID":"","numbers":[],"rides":[], "numberOfRides":0, "code":"", "balance":0}
-           
+            info = {"fname": request.form['fname'], "lname": request.form['lname'], "email": request.form['email'],
+                    "password": hashedpw, "bikeID": "", "tempBikeID": "", "numbers": [], "rides": [],
+                    "numberOfRides": 0, "code": "", "balance": 0}
+
             db.araf(info)
 
             # app.config['MAIL_SERVER']='smtp.gmail.com'
@@ -234,11 +234,7 @@ def getUserbike(email):
                 'status': 403}
         return data
 
-        
-        
-    #msh bta5od 7aga mn forms.data
-
-
+    # msh bta5od 7aga mn forms.data
 
     validated = getUserBike(email)
 
@@ -274,7 +270,6 @@ def getUserTempBike(email):
         data = {'Response': out,
                 'status': 403}
         return data
-
 
     validated = getUserTempBike(email)
 
@@ -312,11 +307,9 @@ def getCMD():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"]
     }
-
 
     validated = getCommand(request.form)
 
@@ -354,13 +347,10 @@ def updateBikeID():
                 'status': 403}
         return data
 
-
-
     info = {
         "email": request.form["email"],
         "bikeID": request.form["bikeID"]
     }
-
 
     validated = bikeID(request.form)
 
@@ -398,12 +388,10 @@ def updateTempBikeID():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"],
         "tempBikeID": request.form["tempBikeID"]
     }
-
 
     validated = tempBikeID(request.form)
 
@@ -441,11 +429,9 @@ def nullifyBikeID():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"]
     }
-
 
     validated = remBikeID(request.form)
 
@@ -484,12 +470,10 @@ def addNumber():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"],
         "numbers": request.form["numbers"]
     }
-
 
     validated = addNum(request.form)
     error = validated["error"]
@@ -526,13 +510,11 @@ def editNumber():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"],
         "numbers": request.form["numbers"],
         "numbers2": request.form["numbers2"]
     }
-
 
     validated = editNum(request.form)
     error = validated["error"]
@@ -569,12 +551,10 @@ def removeNumber():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"],
         "numbers": request.form["numbers"]
     }
-
 
     validated = removeNum(request.form)
     error = validated["error"]
@@ -610,7 +590,6 @@ def getEmergencyNumbers(email):
         data = {'Response': out,
                 'status': 403}
         return data
-
 
     dic = {"email": email}
     validated = getNumbers(dic)
@@ -656,16 +635,14 @@ def createRide():
         return data
     # email_func
 
-
     info = {
         "email": request.form["email"],
-        "history":request.form["history"],
-        "startDate":request.form["startDate"],
-        "endDate":request.form["endDate"],
-        "startTime":request.form["startTime"],
-        "endTime":request.form["endTime"]
+        "history": request.form["history"],
+        "startDate": request.form["startDate"],
+        "endDate": request.form["endDate"],
+        "startTime": request.form["startTime"],
+        "endTime": request.form["endTime"]
     }
-
 
     validated = createRideDB(request.form)
     error = validated["error"]
@@ -702,12 +679,10 @@ def removeRide():
         return data
     # email_func
 
-
     info = {
         "email": request.form["email"],
-        "rideNo":request.form["rideNo"]
+        "rideNo": request.form["rideNo"]
     }
-
 
     validated = removeRideDB(request.form)
     error = validated["error"]
@@ -786,11 +761,9 @@ def checkEmail():
         return data
     # email_func
 
-
     info = {
         "email": request.form["email"]
     }
-
 
     validated = emailCheck(request.form)
     error = validated["error"]
@@ -826,11 +799,9 @@ def emailVall():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"]
     }
-
 
     validated = validEmail(request.form)
     error = validated["error"]
@@ -870,12 +841,9 @@ def forgotPW():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"]
     }
-
-
 
     letters = string.ascii_letters
     code = ''.join(random.choice(letters) for i in range(4))
@@ -931,14 +899,10 @@ def checkcode():
         return data
     # bta5od email wel entered code mn el user
 
-
-
     info = {
         "email": request.form["email"],
         "code": request.form["code"]
     }
-
-
 
     validated = checkCode(request.form)
     error = validated["error"]
@@ -978,9 +942,8 @@ def changePWEZ():
 
     info = {
         "email": request.form["email"],
-        "newpassword":request.form["newpassword"]
+        "newpassword": request.form["newpassword"]
     }
-
 
     validated = changePwEz(request.form)
     error = validated["error"]
@@ -1019,11 +982,9 @@ def removecode():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"]
     }
-
 
     validated = removeCode(request.form)
     error = validated["error"]
@@ -1059,13 +1020,10 @@ def login():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"],
-        "password":request.form["password"]
+        "password": request.form["password"]
     }
-
-
 
     validated = signinValidate(request.form)
     error = validated["error"]
@@ -1114,13 +1072,11 @@ def changepw():
                 'status': 403}
         return data
 
-
     info = {
         "email": request.form["email"],
-        "password":request.form["password"],
-        "newpassword":request.form["newpassword"]
+        "password": request.form["password"],
+        "newpassword": request.form["newpassword"]
     }
-
 
     validated = changePassword(request.form)
     error = validated["error"]
@@ -1142,20 +1098,19 @@ def changepw():
                 'status': 500}
         return data
 
+
 ########### Newest stuff
 
 
-@app.route('/users/getname/<email>', methods=['GET'])
+@app.route('/users/getname/<email>', methods=['POST'])
 def getname(email):
-
-
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -1163,42 +1118,37 @@ def getname(email):
         data = {'Response': out,
                 'status': 403}
         return data
-
 
     validated = db.getName(email)
     error = validated["error"]
-    
-    if(not error):
-        
-        return Response(
-            response=json.dumps({
-                "firstName": validated["firstName"],
-                "lastName": validated["lastName"]
-            }),
-            status=200,
-            mimetype="application/json"
-        )
+
+    if (not error):
+        out = json.dumps({
+            "firstName": validated["firstName"],
+            "lastName": validated["lastName"]
+        }, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=500,
-            mimetype="application/json"
-        )
-    
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        resp.headers['Output'] = out
+        data = {'Response': out,
+                'status': 500}
+        return data
 
 
-@app.route('/users/getbalance/<email>', methods=['GET'])
+@app.route('/users/getbalance/<email>', methods=['POST'])
 def getbalance(email):
-
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -1206,41 +1156,36 @@ def getbalance(email):
         data = {'Response': out,
                 'status': 403}
         return data
-
 
     validated = db.getBalance(email)
     error = validated["error"]
-    
-    if(not error):
-        
-        return Response(
-            response=json.dumps({
-                "balance": validated["balance"]
-            }),
-            status=200,
-            mimetype="application/json"
-        )
-    else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=500,
-            mimetype="application/json"
-        )
-    
 
-           
+    if (not error):
+        out = json.dumps({
+            "balance": validated["balance"]
+        }, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
+    else:
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        resp.headers['Output'] = out
+        data = {'Response': out,
+                'status': 500}
+        return data
+
+
 @app.route('/users/nullifytempbikeid', methods=['POST'])
 def nullifyTempBikeID():
-
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -1248,47 +1193,39 @@ def nullifyTempBikeID():
         data = {'Response': out,
                 'status': 403}
         return data
-
 
     info = {
         "email": request.form["email"]
     }
 
-
     validated = db.removeTempBikeID(request.form)
-    
+
     error = validated["error"]
     message = validated["message"]
-    if(not error):
-        
-        return Response(
-            response=json.dumps(message),
-            #response=json.dumps(request.form),
-            status=200,
-            mimetype="application/json"
-        )
+    if (not error):
+        out = json.dumps(message, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=500,
-            mimetype="application/json"
-        )
-    
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        resp.headers['Output'] = out
+        data = {'Response': out,
+                'status': 500}
+        return data
 
 
-       
-@app.route('/users/addtobalance', methods=['POST']) ## needs bike name (Name) and money number (money)
+@app.route('/users/addtobalance', methods=['POST'])  ## needs bike name (Name) and money number (money)
 def addtobalance():
-
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -1297,33 +1234,25 @@ def addtobalance():
                 'status': 403}
         return data
 
-
     info = {
         "Name": request.form["Name"],
-        "money":request.form["money"]
+        "money": request.form["money"]
     }
 
-
     validated = db.addToBalance(request.form)
-    
+
     error = validated["error"]
-    #message = validated["message"]
-    if(not error):
-        
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=200,
-            mimetype="application/json"
-        )
+    # message = validated["message"]
+    if (not error):
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            #response=json.dumps(request.form),
-            status=500,
-            mimetype="application/json"
-        )
-  
+        out = json.dumps({"message": validated["message"]}, default=str)
+        resp = flask.make_response(out)
+        resp.headers['Output'] = out
+        data = {'Response': out,
+                'status': 500}
+        return data
