@@ -449,20 +449,20 @@ def updateBike2():
         data = {'Response': out,
                 'status': 500}
         return data
+
+
 ## VERY IMPORTANT NOTE, TELL ABDULRAHMAN THAT YOU CHANGED NEARESTBIKE AND GET BIKE TO POST!!
 
 ########## INTEGRATING WITH BACKEND
 @app.route('/bikes/shareBike', methods=['POST'])
-#@token_required
 def sharebike():
-
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -478,38 +478,33 @@ def sharebike():
     }
 
     validated = db.shareBike(request.form)
-    
+
     error = validated["error"]
     message = validated["message"]
-    if(not error):
-        
-        return Response(
-            response=json.dumps(message),
-            #response=json.dumps(request.form),
-            status=200,
-            mimetype="application/json"
-        )
+    if (not error):
+
+        out = json.dumps(message, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=500,
-            mimetype="application/json"
-        )
-  
+        out = json.dumps({"message": validated["message"]})
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 500}
+        return data
+
+
 @app.route('/bikes/stopShareBike', methods=['POST'])
-#@token_required
 def stopsharebike():
-
-
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -525,39 +520,34 @@ def stopsharebike():
     }
 
     validated = db.stopShareBike(request.form)
-    
+
     error = validated["error"]
     message = validated["message"]
-    if(not error):
-        
-        return Response(
-            response=json.dumps(message),
-            #response=json.dumps(request.form),
-            status=200,
-            mimetype="application/json"
-        )
+    if not error:
+        out = json.dumps(message, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=500,
-            mimetype="application/json"
-        )
-    
+        out = json.dumps({"message": validated["message"]})
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 500}
+        return data
+
+
 #####################################     LYDIA'S STUFF     #####################################
 
 @app.route('/bikes/editPrice', methods=['POST'])
-#@token_required
 def editprice():
-
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -571,40 +561,34 @@ def editprice():
         "East": request.form["East"],
         "Speed": request.form["Speed"]
     }
-
 
     validated = db.editPrice(request.form)
-    
+
     error = validated["error"]
     message = validated["message"]
-    if(not error):
-        
-        return Response(
-            response=json.dumps(message),
-            #response=json.dumps(request.form),
-            status=200,
-            mimetype="application/json"
-        )
+    if (not error):
+        out = json.dumps(message, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        return Response(
-            response=json.dumps({
-                "message": validated["message"]
-            }),
-            status=500,
-            mimetype="application/json"
-        )
-      
-        
-@app.route('/bikes/getbikePrice/<name>', methods=['GET']) #here
+        out = json.dumps({"message": validated["message"]})
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 500}
+        return data
+
+
+@app.route('/bikes/getbikePrice/<name>', methods=['POST'])  # here
 def getBikePrice(name):
-    
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -618,42 +602,35 @@ def getBikePrice(name):
         "East": request.form["East"],
         "Speed": request.form["Speed"]
     }
-
 
     x = db.getbikePrice(name)
     output = dict()
-    
+
     if x is not None:
         output['data'] = x
         output['error'] = False
-        return Response(
-            response=json.dumps({
-                "prices": x["message"]
-            }),
-            status=200,
-            mimetype="application/json"
-        )
+        out = json.dumps({"prices": x["message"]}, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        output['data'] = None
-        output['message'] = "False"
-        output['error'] = True
-        return Response(
-            response=json.dumps(output, default=str),
-            status=500,
-            mimetype="application/json"
-        )
-    
-@app.route('/bikes/getBikeLocked/<name>', methods=['GET']) #here
-def getBikeLocked(name):
-    
+        out = json.dumps(output, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 500}
+        return data
 
+
+@app.route('/bikes/getBikeLocked/<name>', methods=['GET'])  # here
+def getBikeLocked(name):
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -667,42 +644,35 @@ def getBikeLocked(name):
         "East": request.form["East"],
         "Speed": request.form["Speed"]
     }
-
 
     x = db.getbikeLocked(name)
     output = dict()
-    
+
     if x is not None:
         output['data'] = x
         output['error'] = False
-        return Response(
-            response=json.dumps({
-                "Locked": x["message"]
-            }),
-            status=200,
-            mimetype="application/json"
-        )
+        out = json.dumps({"Locked": x["message"]}, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        output['data'] = None
-        output['message'] = "False"
-        output['error'] = True
-        return Response(
-            response=json.dumps(output, default=str),
-            status=500,
-            mimetype="application/json"
-        )
-    
-@app.route('/bikes/getBikeShared/<name>', methods=['GET']) #here
-def getBikeShared(name):
-    
+        out = json.dumps(output, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 500}
+        return data
 
+
+@app.route('/bikes/getBikeShared/<name>', methods=['GET'])  # here
+def getBikeShared(name):
     try:
         token = flask.request.form["Token"]
         data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -710,35 +680,28 @@ def getBikeShared(name):
         data = {'Response': out,
                 'status': 403}
         return data
-        
+
     info = {
         "Name": request.form["Name"],
         "North": request.form["North"],
         "East": request.form["East"],
         "Speed": request.form["Speed"]
     }
-    
-
 
     x = db.getbikeShared(name)
     output = dict()
-    
+
     if x is not None:
         output['data'] = x
         output['error'] = False
-        return Response(
-            response=json.dumps({
-                "Shared": x["message"]
-            }),
-            status=200,
-            mimetype="application/json"
-        )
+        out = json.dumps({"Shared": x["message"]}, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 200}
+        return data
     else:
-        output['data'] = None
-        output['message'] = "False"
-        output['error'] = True
-        return Response(
-            response=json.dumps(output, default=str),
-            status=500,
-            mimetype="application/json"
-        )
+        out = json.dumps(output, default=str)
+        resp = flask.make_response(out)
+        data = {'Response': out,
+                'status': 500}
+        return data
