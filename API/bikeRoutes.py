@@ -22,7 +22,7 @@ def token_required(f):
             txt = {"Action": 'Token is missing', "date": datetime.datetime.utcnow()}
             # jsontxt = json.dumps(txt)
             jsonFile = open("log.json", 'w')
-            # jsonFile.append(jsontxt)
+            # jsonFile.write(jsontxt)
             jsonFile.close()
 
             return jsonify({'message': 'Token is missing!'}), 403
@@ -34,7 +34,7 @@ def token_required(f):
             txt = {"Action": 'Token is Invalid', "date": datetime.datetime.utcnow()}
             # jsontxt = json.dumps(txt)
             jsonFile = open("log.json", 'w')
-            # jsonFile.append(jsontxt)
+            # jsonFile.write(jsontxt)
             jsonFile.close()
             return jsonify({'message': 'Token is invalid!'}), 403
 
@@ -59,7 +59,7 @@ def AddBike():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -119,7 +119,7 @@ def getBike():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -162,7 +162,7 @@ def getAllBikes():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -201,7 +201,7 @@ def get_location():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -246,7 +246,7 @@ def UpdateBike():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -300,7 +300,7 @@ def updateCommand():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -340,7 +340,7 @@ def updateLocked():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -379,7 +379,7 @@ def updateunLocked():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -419,7 +419,7 @@ def updateBike2():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
