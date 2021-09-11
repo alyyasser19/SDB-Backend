@@ -20,7 +20,7 @@ def token_required(f):
         if not token:
             txt = {"Action": 'Token is missing', "date": datetime.datetime.utcnow()}
             jsontxt = json.dumps(txt)
-            jsonFile = open("log.json", 'w')
+            jsonFile = open("API/log.json", 'w')
             jsonFile.write(jsontxt)
             jsonFile.close()
 
@@ -32,7 +32,7 @@ def token_required(f):
         except:
             txt = {"Action": 'Token is Invalid', "date": datetime.datetime.utcnow()}
             jsontxt = json.dumps(txt)
-            jsonFile = open("log.json", 'w')
+            jsonFile = open("API/log.json", 'w')
             jsonFile.write(jsontxt)
             jsonFile.close()
             return jsonify({'message': 'Token is invalid!'}), 403
@@ -63,14 +63,14 @@ def login():
                            app.config['SECRET_KEY'], "HS256")
         txt = {"Action": 'Token was authorized', "User": auth.username, }
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("API/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         return jsonify({'token': token})
     else:
         txt = {"Action": 'Token could not be verified'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("log.json", 'w')
+        jsonFile = open("API/log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
 

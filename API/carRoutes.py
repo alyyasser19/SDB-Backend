@@ -20,8 +20,8 @@ def AddCar():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
-        jsonFile.write(jsontxt)
+        jsonFile = open("log.json", 'w')
+        jsonFile.append(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -73,8 +73,8 @@ def getCar():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
-        jsonFile.write(jsontxt)
+        jsonFile = open("log.json", 'w')
+        jsonFile.append(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -115,8 +115,8 @@ def getAllCars():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
-        jsonFile.write(jsontxt)
+        jsonFile = open("log.json", 'w')
+        jsonFile.append(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -155,8 +155,8 @@ def getlocationcars():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
-        jsonFile.write(jsontxt)
+        jsonFile = open("log.json", 'w')
+        jsonFile.append(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -199,8 +199,8 @@ def Updatecar():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
-        jsonFile.write(jsontxt)
+        jsonFile = open("log.json", 'w')
+        jsonFile.append(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
