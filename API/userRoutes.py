@@ -78,7 +78,7 @@ def token_required(f):
         if not token:
             txt = {"Action": 'Token is missing', "date": datetime.datetime.utcnow()}
             #          jsontxt = json.dumps(txt)
-            jsonFile = open("../log.json", 'w')
+            jsonFile = open("log.json", 'w')
             #  jsonFile.write(jsontxt)
             jsonFile.close()
 
@@ -90,7 +90,7 @@ def token_required(f):
         except:
             txt = {"Action": 'Token is Invalid', "date": datetime.datetime.utcnow()}
             # jsontxt = json.dumps(txt)
-            jsonFile = open("../log.json", 'w')
+            jsonFile = open("log.json", 'w')
             # jsonFile.write(jsontxt)
             jsonFile.close()
             return jsonify({'message': 'Token is invalid!'}), 403
@@ -113,7 +113,7 @@ def sendEmail():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -149,7 +149,7 @@ def createUser():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -218,7 +218,7 @@ def getUserbike(email):
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -252,7 +252,7 @@ def getUserTempBike(email):
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -287,7 +287,7 @@ def getCMD():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -322,7 +322,7 @@ def updateBikeID():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -357,7 +357,7 @@ def updateTempBikeID():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -392,7 +392,7 @@ def nullifyBikeID():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -428,7 +428,7 @@ def addNumber():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -462,7 +462,7 @@ def editNumber():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -496,7 +496,7 @@ def removeNumber():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -530,7 +530,7 @@ def getEmergencyNumbers(email):
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -572,7 +572,7 @@ def createRide():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -606,7 +606,7 @@ def removeRide():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -642,7 +642,7 @@ def getRide(email):
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -682,7 +682,7 @@ def checkEmail():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -716,7 +716,7 @@ def emailVall():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -753,7 +753,7 @@ def forgotPW():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -805,7 +805,7 @@ def checkcode():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -841,7 +841,7 @@ def changePWEZ():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -879,7 +879,7 @@ def removecode():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -912,7 +912,7 @@ def login():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
@@ -929,7 +929,7 @@ def login():
                                 app.config['SECRET_KEY'], "HS256")
         txt = {"Action": 'Token was authorized', "User": auth}
         # jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         # jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps({'LoginToken': tokenLogin}, default=str)
@@ -940,7 +940,7 @@ def login():
     else:
         txt = {"Action": 'Token could not be verified'}
         # jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         # jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps({"message": validated["message"]}, default=str)
@@ -958,7 +958,7 @@ def changepw():
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
-        jsonFile = open("../log.json", 'w')
+        jsonFile = open("log.json", 'w')
         jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
