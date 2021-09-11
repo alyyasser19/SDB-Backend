@@ -102,7 +102,7 @@ def token_required(f):
 
 @app.route('/')
 def welcome():
-    return "Welcome to the app!"
+    return "Welcome to the User Server!"
 
 
 @app.route('/users/sendemail', methods=['POST'])
