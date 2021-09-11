@@ -26,7 +26,7 @@ def AddInfra():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -78,7 +78,7 @@ def getInfra():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -120,7 +120,7 @@ def getAllInfra():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
@@ -159,7 +159,7 @@ def get_location_infra():
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
         jsonFile = open("log.json", 'w')
-        jsonFile.append(jsontxt)
+        jsonFile.write(jsontxt)
         jsonFile.close()
         out = json.dumps(txt, default=str)
         resp = flask.make_response(out)
