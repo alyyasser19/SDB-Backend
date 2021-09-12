@@ -257,6 +257,18 @@ class DataBase:
         return {"error": True, "message": "E-mail not found"}
 
 
+    def removeTempBikeID(self, params):
+        cursor1= self.db.users.find()            
+        for record in cursor1:   
+            if record['email'] == params['email']: 
+                
+                self.db.users.find_one_and_update({"email" : params['email']},{"$set":{"tempBikeID": ""}},upsert=True)
+                
+                return {"error": False, "message":"Temp bike ID updated"}                
+        return {"error": True, "message": "E-mail not found"}
+
+
+
     def getcmd(self, params):
         cursor1= self.db.users.find()            
         for record in cursor1:   
@@ -305,10 +317,10 @@ class DataBase:
             return {"error": True, "message": "Error"}
 
     
-    def getUserTempB(self, params):
+    def getUserTempB(self, mail):
         cursor1= self.db.users.find()            
         for record in cursor1:
-            if record['email'] == params['email']: 
+            if record['email'] == mail: 
                 result = record["tempBikeID"]
                 return {"error": False, "message":result}                
         return {"error": True, "message": "E-mail not found"}
@@ -358,10 +370,55 @@ class DataBase:
                
         return {"error": True, "message": "Email not found!"}
 
+
+
+    def getName(self, email):
+        cursor1= self.db.users.find()            
+        for record in cursor1:
+            if record['email'] == email: 
+                return {"error": False, "firstName":record["fname"], "lastName":record["lname"]}                
+        return {"error": True, "message": "E-mail not found"}
     
 
+    def getBalance(self, mail):
+        cursor1= self.db.users.find()            
+        for record in cursor1:
+            if record['email'] == mail: 
+                return {"error": False, "balance":record["balance"]}                
+        return {"error": True, "message": "E-mail not found"}
+    
+    
+    def getSharedBike(self, email):
+        cursor1= self.db.users.find()            
+        for record in cursor1:
+            if record['email'] == email: 
+                return {"error": False, "message":record["tempBikeID"]}
+        return {"error": True, "message": "E-mail not found"}
+    
+    
+  
+    def addToBalance(self, params):
+        cursor1= self.db.users.find()            
+        for record in cursor1:
+        
+            if (record['bikeID'] == params['Name']):
+                
+              # code = bcrypt.generate_password_hash(params["code"])
+             #  if bcrypt.check_password_hash(record['code'], params["code"]):
+                
+                if record["balance"]=="":
+                    newBalance =  float(params["money"])
+                else:
+                    newBalance = float(record['balance']) + float(params["money"])
+                    #return {"error": False, "message":newBalance}  
+    
+                self.db.users.find_one_and_update({"email" : record["email"]},{"$set":{"balance": newBalance}},upsert=True)
+                return {"error": False, "message":record["balance"]}  
+               
+        return {"error": True, "message": "Bike not linked to any user!"}
+    
     def __del__(self):
         self.db.close()
-
+        
         
         
