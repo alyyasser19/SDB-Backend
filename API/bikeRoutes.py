@@ -156,9 +156,8 @@ def getBike():
 @app.route('/bikes', methods=['POST'])
 def getAllBikes():
     try:
-       # token = flask.request.form["Token"]
-       # data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
-         print()
+        token = flask.request.form["Token"]
+        data = jwt.decode(token, app.config['SECRET_KEY'], ["HS256"])
     except:
         txt = {"Action": 'Token is Invalid'}
         jsontxt = json.dumps(txt)
